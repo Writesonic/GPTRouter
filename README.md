@@ -51,9 +51,8 @@ Ready to get started? Here's how:
 ### Prerequisites
 
 **Getting The Server Running**
-
-- To run the GPTRouter server locally, follow the steps [here](https://gpt-router.writesonic.com/docs/deployment/Developing%20Locally)
-- Alternatively, use our **Preview Deployment** with the baseURL `https://gpt-router-preview.writesonic.com/`. Get your API key by filling out the form [here](https://gpt-router.writesonic.com/#APIKey).
+   - To run the GPTRouter server locally, follow the steps [here](https://gpt-router.writesonic.com/docs/Getting%20Started/Developing%20Locally) 
+   - Alternatively, use our **Preview Deployment** with the baseURL ```https://gpt-router-preview.writesonic.com/```. Get your API key by filling out the form [here](https://gpt-router.writesonic.com/#APIKey).
 
 ---
 
@@ -82,7 +81,7 @@ from gpt_router.models import ModelGenerationRequest, GenerationParams
 from gpt_router.enums import ModelsEnum, ProvidersEnum
 
 
-client = GPTRouter(base_url='your_base_url', api_key='your_api_key')
+client = GPTRouterClient(base_url='your_base_url', api_key='your_api_key')
 
 messages = [
     {"role": "user", "content": "Write me a short poem"},
