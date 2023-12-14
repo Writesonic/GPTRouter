@@ -1,10 +1,11 @@
-import { OpenAI } from "openai";
-import { ChatOpenaiInputParamsSchema, ChatOpenaiRoles } from "../../schema/providerSchemas/chatOpenai.schema";
 import dotenv from "dotenv";
+import { OpenAI } from "openai";
 import {
   ChatCompletionCreateParamsNonStreaming,
   ChatCompletionCreateParamsStreaming,
 } from "openai/resources/chat/completions";
+
+import { ChatOpenaiInputParamsSchema, ChatOpenaiRoles } from "../../schema/providerSchemas/chatOpenai.schema";
 
 dotenv.config();
 

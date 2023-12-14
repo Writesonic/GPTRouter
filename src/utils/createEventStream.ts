@@ -1,5 +1,5 @@
-import EventSource from "eventsource";
 import * as Sentry from "@sentry/node";
+import EventSource from "eventsource";
 
 export function createEventStream(url: string): AsyncIterable<any> {
   return {

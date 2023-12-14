@@ -1,11 +1,12 @@
 import { DataSource } from "typeorm";
+
 import { DEFAULT_MAX_RETRIES, DEFAULT_TIMEOUT_IN_MS, Providers } from "../../constants";
-import generateResponse from "./generate";
-import { Provider } from "../../models/Provider";
+import ApiError from "../../library/customError";
 import { Model } from "../../models/Model";
+import { Provider } from "../../models/Provider";
 import { ChatOpenaiRoles } from "../../schema/providerSchemas";
 import updateHealthCheck from "../../utils/updateHealthCheck";
-import ApiError from "../../library/customError";
+import generateResponse from "./generate";
 
 const messages = [{ role: ChatOpenaiRoles.user, content: "ping" }];
 

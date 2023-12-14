@@ -1,5 +1,5 @@
-import { encodingForModel } from "js-tiktoken";
 import * as Sentry from "@sentry/node";
+import { encodingForModel } from "js-tiktoken";
 
 /**
  * Retrieves the token usage information for the given prompt, completion, and model.

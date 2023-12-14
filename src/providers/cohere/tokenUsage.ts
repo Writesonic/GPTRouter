@@ -1,6 +1,6 @@
+import * as Sentry from "@sentry/node";
 import { CohereClient } from "cohere-ai";
 import dotenv from "dotenv";
-import * as Sentry from "@sentry/node";
 
 dotenv.config();
 const cohere = new CohereClient({

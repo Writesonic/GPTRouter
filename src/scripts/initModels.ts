@@ -1,8 +1,9 @@
 import { DataSource } from "typeorm";
+
 import { models } from "../constants";
 import { Model } from "../models/Model";
-import { Provider } from "../models/Provider";
 import { ModelCost } from "../models/ModelCost";
+import { Provider } from "../models/Provider";
 
 /**
  * Initialize the models in the database using the provided ORM connection.

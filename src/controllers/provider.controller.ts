@@ -1,7 +1,8 @@
-import { Provider } from "../models/Provider";
-import { FastifyReplyTypebox, FastifyRequestTypebox } from "../server";
-import { GetAllProvidersSchema } from "../schema/provider.schema";
 import * as Sentry from "@sentry/node";
+
+import { Provider } from "../models/Provider";
+import { GetAllProvidersSchema } from "../schema/provider.schema";
+import { FastifyReplyTypebox, FastifyRequestTypebox } from "../server";
 
 /**
  * Get the active providers

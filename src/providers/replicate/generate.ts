@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import Replicate from "replicate";
+
 import { ReplicateInputParamsSchema } from "../../schema/providerSchemas/replicate.schema";
 dotenv.config();
 

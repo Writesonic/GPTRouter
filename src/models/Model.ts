@@ -1,21 +1,22 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
   BaseEntity,
-  OneToMany,
-  ManyToOne,
+  Column,
   CreateDateColumn,
-  UpdateDateColumn,
+  Entity,
   JoinColumn,
+  ManyToOne,
+  OneToMany,
   OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
-import { Provider } from "./Provider";
-import { ModelHealthCheck } from "./ModelHealthCheck";
+
 import { ModelInputType } from "../constants";
-import { Prompt } from "./Prompt";
-import { ModelUsage } from "./ModelUsage";
 import { ModelCost } from "./ModelCost";
+import { ModelHealthCheck } from "./ModelHealthCheck";
+import { ModelUsage } from "./ModelUsage";
+import { Prompt } from "./Prompt";
+import { Provider } from "./Provider";
 
 /**
  * Entity representing a model in the application.

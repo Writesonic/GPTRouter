@@ -1,13 +1,14 @@
 import { DataSource } from "typeorm";
-import { Provider } from "../base";
+
+import { Providers } from "../../constants";
+import ApiError from "../../library/customError";
+import { BasePromptParams, GenerationResponseSchema } from "../../schema";
 import { CohereInputParamsSchema } from "../../schema/providerSchemas/cohere.schema";
 import { validateData } from "../../utils/schemaValidator";
-import { BasePromptParams, GenerationResponseSchema } from "../../schema";
-import { Providers } from "../../constants";
+import { Provider } from "../base";
 import generateResponse from "./generate";
-import getTokenUsage from "./tokenUsage";
 import checkCohereHealth from "./healthCheck";
-import ApiError from "../../library/customError";
+import getTokenUsage from "./tokenUsage";
 
 export class CohereProvider extends Provider<CohereInputParamsSchema> {
   protected validateParams(params: any): CohereInputParamsSchema {

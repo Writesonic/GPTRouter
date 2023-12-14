@@ -1,17 +1,12 @@
-import { FastifyReplyTypebox, FastifyRequestTypebox } from "../server";
+import * as Sentry from "@sentry/node";
+import { APIConnectionTimeoutError } from "openai";
+import { OpenAI } from "openai";
+import { ChatCompletion, ChatCompletionChunk, Image } from "openai/resources";
 import {
-  GenerateFromImageResponseSchema,
-  GenerateFromPromptResponseSchema,
-  GenerateResponseSchema,
-  Roles,
-  GenerateImageResponseSchema,
-} from "../schema";
-import completeHandler from "../handlers/completeHandler";
-import streamHandler from "../handlers/streamHandler";
-import { ModelHealthCheck } from "../models/ModelHealthCheck";
-import { Provider } from "../models/Provider";
-import { Model } from "../models/Model";
-import ApiError from "../library/customError";
+  ChatCompletionCreateParamsNonStreaming,
+  ChatCompletionCreateParamsStreaming,
+} from "openai/resources/chat/completions";
+
 import {
   DEFAULT_MAX_RETRIES,
   DEFAULT_TIMEOUT_IN_MS,
@@ -27,17 +22,23 @@ import {
   STABLE_DIFFUSION_IMAGE_GENERATION_PARAMS_WIDTH,
   STABLE_DIFFUSION_TEXT_TO_IMAGE,
 } from "../constants";
+import completeHandler from "../handlers/completeHandler";
+import streamHandler from "../handlers/streamHandler";
+import ApiError from "../library/customError";
+import { Model } from "../models/Model";
+import { ModelHealthCheck } from "../models/ModelHealthCheck";
 import { ModelUsage } from "../models/ModelUsage";
-import * as Sentry from "@sentry/node";
 import { Prompt } from "../models/Prompt";
-import { APIConnectionTimeoutError } from "openai";
-import { OpenAI } from "openai";
-import { ChatCompletion, ChatCompletionChunk, Image } from "openai/resources";
+import { Provider } from "../models/Provider";
 import {
-  ChatCompletionCreateParamsNonStreaming,
-  ChatCompletionCreateParamsStreaming,
-} from "openai/resources/chat/completions";
+  GenerateFromImageResponseSchema,
+  GenerateFromPromptResponseSchema,
+  GenerateImageResponseSchema,
+  GenerateResponseSchema,
+  Roles,
+} from "../schema";
 import { StableDiffusionImageResponseSchema } from "../schema";
+import { FastifyReplyTypebox, FastifyRequestTypebox } from "../server";
 
 /**
  * Generates a response based on the request data

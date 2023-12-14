@@ -1,12 +1,13 @@
 import { DataSource } from "typeorm";
-import { Provider } from "../base";
+
+import { SSE_EVENTS } from "../../constants";
+import { BasePromptParams, GenerationResponseSchema, MessagesSchema, Roles } from "../../schema";
 import { AnthropicInputParamsSchema } from "../../schema/providerSchemas/anthropic.schema";
 import { validateData } from "../../utils/schemaValidator";
-import { BasePromptParams, GenerationResponseSchema, MessagesSchema, Roles } from "../../schema";
-import { SSE_EVENTS } from "../../constants";
+import { Provider } from "../base";
 import generateResponse from "./generate";
-import getTokenUsage from "./tokenUsage";
 import checkAnthropicHealth from "./healthCheck";
+import getTokenUsage from "./tokenUsage";
 
 export class AnthropicProvider extends Provider<AnthropicInputParamsSchema> {
   protected validateParams(params: any): AnthropicInputParamsSchema {

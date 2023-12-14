@@ -1,9 +1,10 @@
 import { DataSource } from "typeorm";
+
 import { DEFAULT_MAX_RETRIES, DEFAULT_TIMEOUT_IN_MS, Providers } from "../../constants";
-import generateResponse from "./generate";
-import { Provider } from "../../models/Provider";
 import { Model } from "../../models/Model";
+import { Provider } from "../../models/Provider";
 import updateHealthCheck from "../../utils/updateHealthCheck";
+import generateResponse from "./generate";
 
 /**
  * Checks the health of Cohere provider by querying the database using the specified Orm.

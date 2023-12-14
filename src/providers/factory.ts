@@ -1,12 +1,11 @@
 // ProviderFactory.ts
 
-import { Provider } from "./base";
-import ApiError from "../library/customError";
 import { Providers } from "../constants";
-
-import { ChatOpenAIProvider } from "./chatOpenai/provider";
-import { AzureChatOpenAIProvider } from "./azureChatOpenAI/provider";
+import ApiError from "../library/customError";
 import { AnthropicProvider } from "./anthropic/provider";
+import { AzureChatOpenAIProvider } from "./azureChatOpenAI/provider";
+import { Provider } from "./base";
+import { ChatOpenAIProvider } from "./chatOpenai/provider";
 import { CohereProvider } from "./cohere/provider";
 import { OpenAIProvider } from "./openai/provider";
 import { ReplicateProvider } from "./replicate/provider";

@@ -1,11 +1,12 @@
 import { FastifyInstance } from "fastify";
-import modelRouter from "./model.route";
-import healthCheckRouter from "./healthCheck.route";
-import providerRouter from "./provider.route";
+
 import generationRouter from "./generation.route";
-import promptRouter from "./prompt.route";
-import userRouter from "./user.route";
+import healthCheckRouter from "./healthCheck.route";
+import modelRouter from "./model.route";
 import modelUsageRouter from "./modelUsage.route";
+import promptRouter from "./prompt.route";
+import providerRouter from "./provider.route";
+import userRouter from "./user.route";
 
 /**
  * Initialize the routes for the Fastify server.

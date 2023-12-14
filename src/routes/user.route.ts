@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
-import { LoginSchema } from "../schema";
+
 import { verifyUser } from "../controllers";
+import { LoginSchema } from "../schema";
 
 /**
  * Handles the user routes for login
