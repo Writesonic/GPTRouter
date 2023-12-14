@@ -4,10 +4,9 @@
 
 You first need to define your environment variables. In most projects, these are typically stored in a `.env` file (Check your project's README.md or documentation for specific instructions on which env variables to define).
 
-
 ### Step 2: Running Docker Compose
 
-Once the `Dockerfile` and `.env` files are set up, we can proceed with running the container. 
+Once the `Dockerfile` and `.env` files are set up, we can proceed with running the container.
 
 Go to the directory containing the `docker-compose.yml` and `.env` files, and run:
 
@@ -17,7 +16,7 @@ docker-compose up -d --build
 
 This command will start all the services defined in `docker-compose.yml` in detached mode (-d), and build the images if they are not already created.
 
-### Step 3: Verify the Setup 
+### Step 3: Verify the Setup
 
 To verify that the container is running, you can use the following command:
 
@@ -42,4 +41,5 @@ Once you are done, use the following command to stop your containers:
 ```bash
 docker-compose down
 ```
+
 Remember to replace any placeholder values in the steps with your actual values.

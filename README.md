@@ -1,9 +1,8 @@
-# 🚀 GPTRouter 
+# 🚀 GPTRouter
 
 **Your AI Model Gateway - Smoothly Manage Multiple LLMs and Image Models, Speed Up Responses, and Ensure Non-Stop Reliability.**
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/writesonic?style=social)](https://twitter.com/writesonic)
-
 
 ## 🌐 Why GPTRouter?
 
@@ -37,26 +36,24 @@ At Writesonic, after three years of navigating the world of large language model
 | Cohere           | :white_check_mark: |    :white_check_mark:    | :white_check_mark: |    :white_check_mark:    |
 | More to come     |     :clock930:     |        :clock930:        |     :clock930:     |        :clock930:        |
 
-
 :heavy_exclamation_mark: Streaming not applicable to Image Models
 
 :clock930: Coming Soon
 
-
-
 :sparkles: **Contributors Welcome!** :sparkles:
-
 
 ## Quick Start
 
 Ready to get started? Here's how:
 
 ---
+
 ### Prerequisites
 
 **Getting The Server Running**
-   - To run the GPTRouter server locally, follow the steps [here](https://gpt-router.writesonic.com/docs/deployment/Developing%20Locally) 
-   - Alternatively, use our **Preview Deployment** with the baseURL ```https://gpt-router-preview.writesonic.com/```. Get your API key by filling out the form [here](https://gpt-router.writesonic.com/#APIKey).
+
+- To run the GPTRouter server locally, follow the steps [here](https://gpt-router.writesonic.com/docs/deployment/Developing%20Locally)
+- Alternatively, use our **Preview Deployment** with the baseURL `https://gpt-router-preview.writesonic.com/`. Get your API key by filling out the form [here](https://gpt-router.writesonic.com/#APIKey).
 
 ---
 
@@ -66,17 +63,19 @@ Meanwhile, we are working on JS and other clients and are looking for contributo
 ### Using the Python SDK
 
 Install GPTRouter using pip:
+
 ```bash
 pip install gptrouter
 ```
 
 Or with conda:
+
 ```bash
 conda install gptrouter -c conda-forge
 ```
 
-
 **Usage Example**
+
 ```python
 from gpt_router.client import GPTRouterClient
 from gpt_router.models import ModelGenerationRequest, GenerationParams
@@ -105,26 +104,21 @@ Explore streaming and other examples [here](/docs/examples/).
 
 ---
 
-
 ### On the Horizon:
 
 - Integrations with Langchain and LlamaIndex, expanding your options even further.
-
 
 ## 📖 Documentation
 
 For comprehensive documentation, visit: [GPTRouter Documentation](https://gpt-router.writesonic.com)
 
-
 ## 🛠️ Installation and Setup
 
 Detailed installation instructions and setup guidance can be found in our [Getting Started Guide](https://gpt-router.writesonic.com/docs/Getting%20Started/Developing%20Locally).
 
-
 ## 🤝 Contributing
 
 We welcome contributions from the community! If you're interested in improving GPTRouter, see our [Contribution Guidelines](./contributing.md).
-
 
 ## 🔗 Links
 

@@ -1,25 +1,27 @@
-# 🚀 GPTRouter 
+# 🚀 GPTRouter
 
 **GPTRouter: Your AI Model Gateway - Smoothly Manage Multiple LLMs and Image Models, Speed Up Responses, and Ensure Non-Stop Reliability.**
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/writesonic?style=social)](https://twitter.com/writesonic)
-
 
 ## Quick Start
 
 Ready to get started? Here's how:
 
 ---
+
 ### Prerequisites
 
-1. **Getting The Server Running** 
-   - You would need to have the GPTRouter server running, to run it locally you can have a look [here](https://gpt-router.writesonic.com/docs/Getting%20Started/Developing%20Locally) 
-   - or you can use our **Preview Deployment** with baseURL ```https://gpt-router-preview.writesonic.com/``` and to get an API key please fill the form [here](https://gpt-router.writesonic.com/#APIKey) and get the preview key delivered to you over the email 
+1. **Getting The Server Running**
+   - You would need to have the GPTRouter server running, to run it locally you can have a look [here](https://gpt-router.writesonic.com/docs/Getting%20Started/Developing%20Locally)
+   - or you can use our **Preview Deployment** with baseURL `https://gpt-router-preview.writesonic.com/` and to get an API key please fill the form [here](https://gpt-router.writesonic.com/#APIKey) and get the preview key delivered to you over the email
 
 ---
-You can try out the GPTRouter using our PythonSDK or via the API  [Docs](https://gpt-router-preview.writesonic.com/docs/static/index.html) meanwhile we are working on JS and other Clients and are looking for contributors
+
+You can try out the GPTRouter using our PythonSDK or via the API [Docs](https://gpt-router-preview.writesonic.com/docs/static/index.html) meanwhile we are working on JS and other Clients and are looking for contributors
 
 ### Using the Python SDK
+
 ```bash
 pip install gptrouter
 ```
@@ -29,7 +31,9 @@ Or with conda:
 ```bash
 conda install gptrouter -c conda-forge
 ```
+
 **Usage**
+
 ```python
 from gpt_router.client import GPTRouterClient
 from gpt_router.models import ModelGenerationRequest, GenerationParams
@@ -52,6 +56,7 @@ claude2_request = ModelGenerationRequest(
 response = client.generate(ordered_generation_requests=[claude2_request])
 print(response.choices[0].text)
 ```
+
 **
 To explore more about Streaming and other examples you can have a look** [here](/docs/examples/)
 
@@ -89,11 +94,9 @@ At Writesonic, after three years of navigating the world of large language model
 | Cohere           | :white_check_mark: |    :white_check_mark:    | :white_check_mark: |    :white_check_mark:    |
 | More to come     |     :clock930:     |        :clock930:        |     :clock930:     |        :clock930:        |
 
-
 :heavy_exclamation_mark: Streaming not applicable to Image Models
 
 :clock930: Coming Sooon
-
 
 **:sparkles: Contributors Welcome! :sparkles:**
 
@@ -101,21 +104,17 @@ At Writesonic, after three years of navigating the world of large language model
 
 - Integrations with Langchain and LlamaIndex, expanding your options even further.
 
-
 ## 📖 Documentation
 
 For comprehensive documentation, visit: [GPTRouter Documentation](https://gpt-router.writesonic.com)
-
 
 ## 🛠️ Installation and Setup
 
 Detailed installation instructions and setup guidance can be found in our [Getting Started Guide](https://gpt-router.writesonic.com/get-started).
 
-
 ## 🤝 Contributing
 
 We welcome contributions from the community! If you're interested in improving GPTRouter, see our [Contribution Guidelines](./03-Contributing.md).
-
 
 ## 🔗 Links
 

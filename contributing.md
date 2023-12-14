@@ -1,10 +1,9 @@
-Contributing to GPTRouter
-=============================
+# Contributing to GPTRouter
 
 Thank you for your interest in contributing to GPTRouter! This document will guide you through the process of setting up the project and explain how you can contribute to its development. By following these guidelines, you can help us make GPTRouter better for everyone.
 
-Table of Contents
------------------
+## Table of Contents
+
 - [Contributing to GPTRouter](#contributing-to-gptrouter)
   - [Table of Contents](#table-of-contents)
   - [Setting up the Environment](#setting-up-the-environment)
@@ -17,17 +16,15 @@ Table of Contents
   - [Creating Issues](#creating-issues)
   - [License](#license)
 
-
-Setting up the Environment
---------------------------
+## Setting up the Environment
 
 To contribute to GPTRouter, ensure that your system meets the following requirements:
+
 - Node.js 18 LTS or later
 - npm or yarn package manager
 - PostgreSQL database
 
-Installing GPTRouter
------------------------
+## Installing GPTRouter
 
 To install and set up the GPTRouter project, follow these steps:
 
@@ -46,8 +43,7 @@ npm install
 yarn install
 ```
 
-Setting up PostgreSQL
----------------------
+## Setting up PostgreSQL
 
 GPTRouter requires a PostgreSQL database to function. Follow these steps to set up PostgreSQL:
 
@@ -61,12 +57,9 @@ createdb model_router_db
 
 1. Set the DB credentials in .env using .env.example as reference:
 
-
 Make sure to replace `username` and `password` with your own PostgreSQL credentials.
 
-
-Running GPTRouter
---------------------
+## Running GPTRouter
 
 To run the GPTRouter project on your local machine, follow these steps:
 
@@ -84,20 +77,17 @@ npm start
 
 The application should now be running on `http://localhost:8000`.
 
-Contributing to GPTRouter
----------------------------
+## Contributing to GPTRouter
 
 If you are interested in contributing to GPTRouter's development, take a look at the issues tab on the project's GitHub repository. There, you will find a list of open issues that you can tackle. Feel free to open new issues as well if you encounter any problems or have ideas for improvement.
 
-Code Style and Guidelines
--------------------------
+## Code Style and Guidelines
 
 To maintain a consistent codebase, GPTRouter follows certain code style and coding conventions. Please adhere to the following guidelines when contributing:
 
 - All code should follow the [JavaScript Standard Style](https://standardjs.com) guidelines.
 
-Submitting Pull Requests
-------------------------
+## Submitting Pull Requests
 
 If you have implemented a new feature, fixed a bug, or made any improvements, we welcome your pull requests. Before submitting a pull request, please make sure to do the following:
 
@@ -111,12 +101,10 @@ If you have implemented a new feature, fixed a bug, or made any improvements, we
 
 We will review your changes and get back to you with feedback or merge it if everything looks good.
 
-Creating Issues
----------------
+## Creating Issues
 
 If you encounter any bugs, have suggestions, or want to discuss new features, please create an issue on the project's GitHub repository. Provide a detailed explanation of the problem or your suggestion so that we can understand it better and discuss it with you.
 
-License
--------
+## License
 
 By contributing to GPTRouter, you agree that your contributions will be licensed under the [GNU GENERAL PUBLIC LICENSE](https://www.gnu.org/licenses/gpl-3.0.en.html).

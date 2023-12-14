@@ -1,19 +1,18 @@
 # Getting Started Locally
 
---- 
+---
 
 ## Building Locally
 
-Setting up the Environment
---------------------------
+## Setting up the Environment
 
 To contribute to GPTRouter, ensure that your system meets the following requirements:
+
 - Node.js 18 LTS or later
 - npm or yarn package manager
 - PostgreSQL database
 
-Installing GPTRouter
------------------------
+## Installing GPTRouter
 
 To install and set up the GPTRouter project, follow these steps:
 
@@ -32,8 +31,7 @@ npm install
 yarn install
 ```
 
-Setting up PostgreSQL
----------------------
+## Setting up PostgreSQL
 
 GPTRouter requires a PostgreSQL database to function. Follow these steps to set up PostgreSQL:
 
@@ -47,12 +45,9 @@ createdb model_router_db
 
 1. Set the DB credentials in .env using .env.example as reference:
 
-
 Make sure to replace `username` and `password` with your own PostgreSQL credentials.
 
-
-Running GPTRouter
---------------------
+## Running GPTRouter
 
 To run the GPTRouter project on your local machine, follow these steps:
 
