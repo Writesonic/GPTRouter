@@ -118,7 +118,7 @@ For comprehensive documentation, visit: [GPTRouter Documentation](https://gpt-ro
 
 ## 🛠️ Installation and Setup
 
-Detailed installation instructions and setup guidance can be found in our [Getting Started Guide](https://gpt-router.writesonic.com/get-started).
+Detailed installation instructions and setup guidance can be found in our [Getting Started Guide](https://gpt-router.writesonic.com/docs/Getting%20Started/Developing%20Locally).
 
 
 ## 🤝 Contributing
