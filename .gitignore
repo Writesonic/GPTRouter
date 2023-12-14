@@ -72,3 +72,5 @@ dist
 *.docusaurus/
 
 .eslintcache
+.vscode
+!.vscode/settings.json.example
