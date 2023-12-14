@@ -70,3 +70,5 @@ dist
 
 *build/
 *.docusaurus/
+
+.eslintcache
