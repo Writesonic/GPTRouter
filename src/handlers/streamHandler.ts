@@ -1,5 +1,5 @@
-import { BasePromptParams } from "../schema";
 import { ProviderFactory } from "../providers/factory";
+import { BasePromptParams } from "../schema";
 
 export default async function* streamHandler({
   providerName,

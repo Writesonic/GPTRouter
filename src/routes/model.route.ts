@@ -1,6 +1,7 @@
+import { FastifyInstance } from "fastify";
+
 import { getAllModels, getModelById } from "../controllers";
 import { GetAllModelsSchema, GetModelByIdSchema } from "../schema";
-import { FastifyInstance } from "fastify";
 
 /**
  * Attach model routes to the Fastify server instance

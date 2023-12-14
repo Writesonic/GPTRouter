@@ -57,7 +57,6 @@ profile*
 *flamegraph*
 
 # lock files
-yarn.lock
 package-lock.json
 
 # generated code
@@ -72,3 +71,5 @@ dist
 *.docusaurus/
 
 .eslintcache
+.vscode
+!.vscode/settings.json.example

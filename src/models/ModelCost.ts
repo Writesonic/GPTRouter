@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, JoinColumn, OneToOne } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+
 import { Model } from "./Model";
 import { Provider } from "./Provider";
 

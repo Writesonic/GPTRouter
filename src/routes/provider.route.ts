@@ -1,4 +1,5 @@
 import { FastifyInstance } from "fastify";
+
 import { getActiveProviders } from "../controllers/provider.controller";
 import { GetAllProvidersSchema } from "../schema/provider.schema";
 

@@ -1,12 +1,13 @@
 import { DataSource } from "typeorm";
-import { Provider } from "../base";
-import { ReplicateInputParamsSchema } from "../../schema/providerSchemas/replicate.schema";
-import { validateData } from "../../utils/schemaValidator";
-import { GenerationResponseSchema } from "../../schema";
+
 import { ImageChatModels, SSE_EVENTS } from "../../constants";
-import generateResponse from "./generate";
 import ApiError from "../../library/customError";
+import { GenerationResponseSchema } from "../../schema";
+import { ReplicateInputParamsSchema } from "../../schema/providerSchemas/replicate.schema";
 import { createEventStream } from "../../utils/createEventStream";
+import { validateData } from "../../utils/schemaValidator";
+import { Provider } from "../base";
+import generateResponse from "./generate";
 
 export class ReplicateProvider extends Provider<ReplicateInputParamsSchema> {
   protected validateParams(params: any): ReplicateInputParamsSchema {

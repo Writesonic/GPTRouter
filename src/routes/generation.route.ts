@@ -1,16 +1,17 @@
 import { FastifyInstance } from "fastify";
-import {
-  GenerateFromImageResponseSchema,
-  GenerateFromPromptResponseSchema,
-  GenerateImageResponseSchema,
-  GenerateResponseSchema,
-} from "../schema";
+
 import {
   generateImageResponse,
   generateResponse,
   generateResponseFromImage,
   generateResponseFromPrompt,
 } from "../controllers";
+import {
+  GenerateFromImageResponseSchema,
+  GenerateFromPromptResponseSchema,
+  GenerateImageResponseSchema,
+  GenerateResponseSchema,
+} from "../schema";
 
 /**
  * Attach generation routes to the Fastify server.

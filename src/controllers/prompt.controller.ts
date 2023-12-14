@@ -1,4 +1,9 @@
-import { FastifyReplyTypebox, FastifyRequestTypebox } from "../server";
+import * as Sentry from "@sentry/node";
+
+import { DEFAULT_MAX_RETRIES, DEFAULT_TIMEOUT_IN_MS, ERROR_MESSAGES } from "../constants";
+import completeHandler from "../handlers/completeHandler";
+import { Model } from "../models/Model";
+import { Prompt } from "../models/Prompt";
 import {
   BasePromptParams,
   CreatePromptSchema,
@@ -9,11 +14,7 @@ import {
   Roles,
   UpdatePromptSchema,
 } from "../schema";
-import { Prompt } from "../models/Prompt";
-import { DEFAULT_MAX_RETRIES, DEFAULT_TIMEOUT_IN_MS, ERROR_MESSAGES } from "../constants";
-import { Model } from "../models/Model";
-import completeHandler from "../handlers/completeHandler";
-import * as Sentry from "@sentry/node";
+import { FastifyReplyTypebox, FastifyRequestTypebox } from "../server";
 
 /**
  * Retrieves all prompts from the database.

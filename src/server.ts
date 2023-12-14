@@ -1,26 +1,26 @@
+import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
+import * as Sentry from "@sentry/node";
 import Fastify from "fastify";
-import initSwagger from "./swagger";
-import initRoutes from "./routes";
-import dbConn from "typeorm-fastify-plugin";
-import PostgresDataSource from "./plugins/db";
-import { FastifySSEPlugin } from "fastify-sse-v2";
-
 import {
+  ContextConfigDefault,
   FastifyReply,
   FastifyRequest,
+  RawReplyDefaultExpression,
   RawRequestDefaultExpression,
   RawServerDefault,
-  RawReplyDefaultExpression,
-  ContextConfigDefault,
 } from "fastify";
 import { RouteGenericInterface } from "fastify/types/route";
 import { FastifySchema } from "fastify/types/schema";
-import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 import fastifyCron from "fastify-cron";
+import { FastifySSEPlugin } from "fastify-sse-v2";
+import dbConn from "typeorm-fastify-plugin";
+
 import { HEALTH_CHECK_CRON_JOB_EXPRESSION } from "./constants";
-import initData from "./scripts";
-import * as Sentry from "@sentry/node";
 import { User } from "./models/User";
+import PostgresDataSource from "./plugins/db";
+import initRoutes from "./routes";
+import initData from "./scripts";
+import initSwagger from "./swagger";
 
 export type FastifyRequestTypebox<TSchema extends FastifySchema> = FastifyRequest<
   RouteGenericInterface,

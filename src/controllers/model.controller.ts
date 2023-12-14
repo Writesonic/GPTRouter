@@ -1,8 +1,9 @@
-import { Model } from "../models/Model";
-import { FastifyReplyTypebox, FastifyRequestTypebox } from "../server";
-import { GetAllModelsSchema, GetModelByIdSchema } from "../schema";
-import { ERROR_MESSAGES } from "../constants";
 import * as Sentry from "@sentry/node";
+
+import { ERROR_MESSAGES } from "../constants";
+import { Model } from "../models/Model";
+import { GetAllModelsSchema, GetModelByIdSchema } from "../schema";
+import { FastifyReplyTypebox, FastifyRequestTypebox } from "../server";
 
 /**
  * Get all models from the database.

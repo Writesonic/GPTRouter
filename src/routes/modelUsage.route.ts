@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
-import { GetAllUsageByModelSchema } from "../schema/modelUsage.schema";
+
 import { getUsageDataByModel } from "../controllers/modelUsage.controller";
+import { GetAllUsageByModelSchema } from "../schema/modelUsage.schema";
 
 /**
  * Adds route for getting usage data by model

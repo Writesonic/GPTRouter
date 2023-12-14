@@ -1,4 +1,5 @@
 import { Static, Type } from "@sinclair/typebox";
+
 import { ModelInputType } from "../constants";
 
 /**

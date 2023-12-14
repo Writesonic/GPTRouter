@@ -1,7 +1,8 @@
-import { OpenAI } from "openai";
-import { OpenaiInputParamsSchema } from "../../schema/providerSchemas";
 import dotenv from "dotenv";
+import { OpenAI } from "openai";
 import { CompletionCreateParamsNonStreaming, CompletionCreateParamsStreaming } from "openai/resources/completions";
+
+import { OpenaiInputParamsSchema } from "../../schema/providerSchemas";
 
 dotenv.config();
 

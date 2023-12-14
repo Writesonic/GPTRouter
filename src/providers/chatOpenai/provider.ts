@@ -1,12 +1,13 @@
 import { DataSource } from "typeorm";
-import { Provider } from "../base";
+
+import { SSE_EVENTS } from "../../constants";
+import { GenerationResponseSchema } from "../../schema";
 import { ChatOpenaiInputParamsSchema } from "../../schema/providerSchemas/chatOpenai.schema";
 import { validateData } from "../../utils/schemaValidator";
-import { GenerationResponseSchema } from "../../schema";
-import { SSE_EVENTS } from "../../constants";
+import { Provider } from "../base";
 import generateResponse from "./generate";
-import getTokenUsage from "./tokenUsage";
 import checkOpenaiHealth from "./healthCheck";
+import getTokenUsage from "./tokenUsage";
 
 export class ChatOpenAIProvider extends Provider<ChatOpenaiInputParamsSchema> {
   protected validateParams(params: any): ChatOpenaiInputParamsSchema {

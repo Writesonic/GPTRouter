@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { AnthropicInputParamsSchema } from "../../schema/providerSchemas";
-
 import dotenv from "dotenv";
+
+import { AnthropicInputParamsSchema } from "../../schema/providerSchemas";
 
 dotenv.config();
 

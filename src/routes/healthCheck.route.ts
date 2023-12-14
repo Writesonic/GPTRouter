@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
-import { GetHealthCheckDataSchema, HealthCheckSchema } from "../schema";
+
 import { getHealthCheckData, triggerHealthCheck } from "../controllers";
+import { GetHealthCheckDataSchema, HealthCheckSchema } from "../schema";
 
 /**
  * Define routes for health check endpoint

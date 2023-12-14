@@ -1,4 +1,6 @@
 import { FastifyInstance } from "fastify";
+
+import { createPrompt, deletePrompt, getAllPrompts, getPromptById, optimizePrompt, updatePrompt } from "../controllers";
 import {
   CreatePromptSchema,
   DeletePromptSchema,
@@ -7,7 +9,6 @@ import {
   OptimizePromptSchema,
   UpdatePromptSchema,
 } from "../schema";
-import { createPrompt, deletePrompt, getAllPrompts, getPromptById, optimizePrompt, updatePrompt } from "../controllers";
 
 /**
  * Registers prompt related routes and their corresponding handlers.

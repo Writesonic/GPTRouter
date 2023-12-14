@@ -1,8 +1,9 @@
+import * as Sentry from "@sentry/node";
+
 import { ERROR_MESSAGES } from "../constants";
 import { User } from "../models/User";
 import { LoginSchema } from "../schema";
 import { FastifyReplyTypebox, FastifyRequestTypebox } from "../server";
-import * as Sentry from "@sentry/node";
 
 /**
  * Verify the user based on the given request and reply objects

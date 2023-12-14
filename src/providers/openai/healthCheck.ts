@@ -1,10 +1,11 @@
 import { DataSource } from "typeorm";
+
 import { DEFAULT_MAX_RETRIES, DEFAULT_TIMEOUT_IN_MS, Providers } from "../../constants";
-import generateResponse from "./generate";
-import { Provider } from "../../models/Provider";
 import { Model } from "../../models/Model";
 import { ModelHealthCheck } from "../../models/ModelHealthCheck";
+import { Provider } from "../../models/Provider";
 import updateHealthCheck from "../../utils/updateHealthCheck";
+import generateResponse from "./generate";
 
 const prompt = "ping";
 

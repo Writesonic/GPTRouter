@@ -1,12 +1,13 @@
-import { DataSource } from "typeorm";
-import { Model } from "../models/Model";
-import { ModelHealthCheck } from "../models/ModelHealthCheck";
-import { Provider } from "../models/Provider";
 import dotenv from "dotenv";
-import { Prompt } from "../models/Prompt";
-import { User } from "../models/User";
-import { ModelUsage } from "../models/ModelUsage";
+import { DataSource } from "typeorm";
+
+import { Model } from "../models/Model";
 import { ModelCost } from "../models/ModelCost";
+import { ModelHealthCheck } from "../models/ModelHealthCheck";
+import { ModelUsage } from "../models/ModelUsage";
+import { Prompt } from "../models/Prompt";
+import { Provider } from "../models/Provider";
+import { User } from "../models/User";
 
 dotenv.config();
 

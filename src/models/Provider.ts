@@ -2,20 +2,21 @@
  * Definition for Provider entity
  */
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
   BaseEntity,
-  OneToMany,
-  ManyToOne,
+  Column,
   CreateDateColumn,
-  UpdateDateColumn,
+  Entity,
   JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
-import { ModelHealthCheck } from "./ModelHealthCheck";
+
 import { Model } from "./Model";
-import { ModelUsage } from "./ModelUsage";
 import { ModelCost } from "./ModelCost";
+import { ModelHealthCheck } from "./ModelHealthCheck";
+import { ModelUsage } from "./ModelUsage";
 
 @Entity()
 export class Provider extends BaseEntity {

@@ -1,5 +1,5 @@
-import { getEncoding, encodingForModel } from "js-tiktoken";
 import * as Sentry from "@sentry/node";
+import { encodingForModel, getEncoding } from "js-tiktoken";
 
 /**
  * getTokenUsage calculates the token usage for a given set of messages, a completion string and a model.
