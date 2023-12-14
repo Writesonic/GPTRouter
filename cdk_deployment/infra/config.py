@@ -1,3 +1,4 @@
+# stage can be alpha, staging or prod
 stage = ""
 DB_USER = ""
 AWS_REGION = ""
