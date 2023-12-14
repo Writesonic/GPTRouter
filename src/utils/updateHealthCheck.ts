@@ -2,11 +2,11 @@ import { DataSource } from "typeorm";
 import { ModelHealthCheck } from "../models/ModelHealthCheck";
 
 interface HealthCheckParams {
-    modelId: string;
-    providerId: string;
-    isAvailable: boolean;
-    status: string;
-    latency?: number;
+  modelId: string;
+  providerId: string;
+  isAvailable: boolean;
+  status: string;
+  latency?: number;
 }
 
 /**
@@ -16,11 +16,15 @@ interface HealthCheckParams {
  * @returns {Promise<void>} - A promise that resolves when the health check is updated
  */
 export default async function updateHealthCheck(params: HealthCheckParams, orm: DataSource) {
-    const { modelId, providerId, isAvailable, status, latency } = params;
-    const updateData = { isAvailable, status, latency };
+  const { modelId, providerId, isAvailable, status, latency } = params;
+  const updateData = { isAvailable, status, latency };
 
-    const healthCheckObj = await orm.getRepository(ModelHealthCheck).findOne({ where: { modelId: modelId, providerId: providerId } });
+  const healthCheckObj = await orm
+    .getRepository(ModelHealthCheck)
+    .findOne({ where: { modelId: modelId, providerId: providerId } });
 
-    await orm.getRepository(ModelHealthCheck).create({ modelId, providerId, ...updateData }).save();
-
+  await orm
+    .getRepository(ModelHealthCheck)
+    .create({ modelId, providerId, ...updateData })
+    .save();
 }

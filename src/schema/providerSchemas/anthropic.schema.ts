@@ -1,4 +1,4 @@
-import { Static, Type } from '@sinclair/typebox'
+import { Static, Type } from "@sinclair/typebox";
 
 /**
  * Represents the schema for Anthropic input parameters.
@@ -8,10 +8,10 @@ import { Static, Type } from '@sinclair/typebox'
  * @property {number} max_tokens_to_sample - The maximum number of tokens to sample.
  */
 export const AnthropicInputParamsSchema = Type.Object({
-    model: Type.String(),
-    prompt: Type.String(),
-    stream: Type.Optional(Type.Boolean()),
-    max_tokens_to_sample: Type.Number(),
-})
+  model: Type.String(),
+  prompt: Type.String(),
+  stream: Type.Optional(Type.Boolean()),
+  max_tokens_to_sample: Type.Number(),
+});
 
-export type AnthropicInputParamsSchema = Static<typeof AnthropicInputParamsSchema>
+export type AnthropicInputParamsSchema = Static<typeof AnthropicInputParamsSchema>;

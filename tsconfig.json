@@ -1,27 +1,24 @@
 {
-    "compilerOptions": {
-        "experimentalDecorators": true,
-        "target": "ESNext",
-        "emitDecoratorMetadata": true,
-        "module": "commonjs",
-        "rootDir": "./src",
-        "moduleResolution": "node",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "target": "ESNext",
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "rootDir": "./src",
+    "moduleResolution": "node",
 
-        "typeRoots": [
-            "./@types",
-            "./node_modules/@types",
-        ],
+    "typeRoots": ["./@types", "./node_modules/@types"],
 
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": false,
-        "strict": true,
-        "strictPropertyInitialization": false,
-        "skipLibCheck": true,
-    },
-    "typedocOptions": {
-        "entryPointStrategy": "expand",
-        "out": "./docs/docs/03-code",
-        // "externalPattern": "**/node_modules/**",
-    },
-    "exclude": ["docs"]
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": false,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "skipLibCheck": true
+  },
+  "typedocOptions": {
+    "entryPointStrategy": "expand",
+    "out": "./docs/docs/03-code"
+    // "externalPattern": "**/node_modules/**",
+  },
+  "exclude": ["docs"]
 }

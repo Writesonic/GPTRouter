@@ -1,6 +1,6 @@
-import { Provider } from "../models/Provider"
-import { FastifyReplyTypebox, FastifyRequestTypebox } from "../server"
-import { GetAllProvidersSchema } from "../schema/provider.schema"
+import { Provider } from "../models/Provider";
+import { FastifyReplyTypebox, FastifyRequestTypebox } from "../server";
+import { GetAllProvidersSchema } from "../schema/provider.schema";
 import * as Sentry from "@sentry/node";
 
 /**
@@ -10,14 +10,14 @@ import * as Sentry from "@sentry/node";
  * @returns {Promise<void>} The response from the active providers
  */
 export const getActiveProviders = async (
-    request: FastifyRequestTypebox<typeof GetAllProvidersSchema>,
-    reply: FastifyReplyTypebox<typeof GetAllProvidersSchema>
+  request: FastifyRequestTypebox<typeof GetAllProvidersSchema>,
+  reply: FastifyReplyTypebox<typeof GetAllProvidersSchema>,
 ) => {
-    try {
-        const response = await request.server.orm.getRepository(Provider).find()
-        reply.code(200).send(response)
-    } catch (e: any) {
-        Sentry.captureException(e);
-        reply.code(500).send(e)
-    }
-}
+  try {
+    const response = await request.server.orm.getRepository(Provider).find();
+    reply.code(200).send(response);
+  } catch (e: any) {
+    Sentry.captureException(e);
+    reply.code(500).send(e);
+  }
+};

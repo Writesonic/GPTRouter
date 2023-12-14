@@ -1,1 +1,1116 @@
-{"openapi":"3.0.3","info":{"title":"Test swagger","description":"testing the fastify swagger api","version":"0.1.0"},"components":{"securitySchemes":{"apiKey":{"type":"apiKey","name":"apiKey","in":"header"}},"schemas":{}},"paths":{"/api/v1/model/all":{"get":{"summary":"Get All Models","description":"Get all models","responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"format":"uuid","type":"string"},"name":{"type":"string"},"providerId":{"format":"uuid","type":"string"},"createdAt":{"type":"object","instanceOf":"Date"},"updatedAt":{"type":"object","instanceOf":"Date"},"providerName":{"type":"string"},"inputType":{"anyOf":[{"type":"string","enum":["prompt"]},{"type":"string","enum":["messages"]}]},"order":{"type":"number"}},"required":["id","name","providerId","createdAt","updatedAt","inputType","order"]}}}}}}}},"/api/v1/model/{id}":{"get":{"summary":"Get All Models by Id","parameters":[{"schema":{"format":"uuid","type":"string"},"in":"path","name":"id","required":true}],"responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"format":"uuid","type":"string"},"name":{"type":"string"},"providerId":{"format":"uuid","type":"string"},"createdAt":{"type":"object","instanceOf":"Date"},"updatedAt":{"type":"object","instanceOf":"Date"},"providerName":{"type":"string"},"inputType":{"anyOf":[{"type":"string","enum":["prompt"]},{"type":"string","enum":["messages"]}]},"order":{"type":"number"}},"required":["id","name","providerId","createdAt","updatedAt","inputType","order"]}}}},"404":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string"}},"required":["message"]}}}}}}},"/api/v1/healthcheck":{"post":{"summary":"Application Health Check","responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"format":"uuid","type":"string"},"modelId":{"format":"uuid","type":"string"},"providerId":{"format":"uuid","type":"string"},"status":{"type":"string"},"isAvailable":{"type":"boolean"},"latency":{"type":"number"},"lastChecked":{"format":"date-time","type":"string"}},"required":["id","modelId","providerId","status","isAvailable","lastChecked"]}}}}}}},"get":{"summary":"Get Health Check Data","parameters":[{"schema":{"format":"date-time","type":"string"},"in":"path","name":"startDate","required":true},{"schema":{"format":"date-time","type":"string"},"in":"path","name":"endDate","required":true}],"responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"modelId":{"format":"uuid","type":"string"},"data":{"type":"array","items":{"type":"object","properties":{"time":{"format":"date-time","type":"string"},"isAvailable":{"type":"boolean"},"latency":{"format":"float","type":"number"}},"required":["time","isAvailable","latency"]}}},"required":["modelId","data"]}}}}},"404":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string"}},"required":["message"]}}}}}}},"/api/v1/provider/all":{"get":{"summary":"Get all providers","responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"format":"uuid","type":"string"},"name":{"type":"string"},"createdAt":{"type":"object","instanceOf":"Date"},"updatedAt":{"type":"object","instanceOf":"Date"}},"required":["id","name","createdAt","updatedAt"]}}}}}}}},"/api/v1/generate":{"post":{"summary":"Generate Response","requestBody":{"content":{"application/json":{"schema":{"type":"object","properties":{"stream":{"type":"boolean"},"timeout":{"type":"number"},"maxRetries":{"type":"number"},"data":{"type":"array","items":{"type":"object","properties":{"providerId":{"format":"uuid","type":"string"},"modelId":{"format":"uuid","type":"string"},"promptParams":{"type":"object","properties":{"messages":{"type":"array","items":{"type":"object","properties":{"role":{"anyOf":[{"type":"string","enum":["system"]},{"type":"string","enum":["user"]},{"type":"string","enum":["assistant"]}]},"content":{"type":"string"}},"required":["role","content"]}},"prompt":{"type":"string"},"temperature":{"type":"number"},"top_p":{"type":"number"},"n":{"type":"number"},"stop":{"anyOf":[{"type":"string"},{"type":"array","items":{"type":"string"}}]},"max_tokens":{"type":"number"},"presence_penalty":{"type":"number"},"frequency_penalty":{"type":"number"},"logit_bias":{},"user":{"type":"string"},"functions":{"type":"array","items":{"type":"object","properties":{}}},"function_call":{"type":"object","properties":{}}}},"order":{"type":"number"}},"required":["providerId","modelId","promptParams","order"]}}},"required":["data"]}}},"required":true},"responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string"},"choices":{"type":"array","items":{"type":"object","properties":{"index":{"type":"number"},"text":{"type":"string"},"finish_reason":{"type":"string"},"role":{"type":"string"},"function_call":{}},"required":["index","text","finish_reason"]}},"model":{"type":"string"},"providerId":{"format":"uuid","type":"string"},"modelId":{"format":"uuid","type":"string"},"meta":{"type":"object","properties":{"usage":{"type":"object","properties":{"completion_tokens":{"type":"number"},"prompt_tokens":{"type":"number"},"total_tokens":{"type":"number"}},"required":["completion_tokens","prompt_tokens","total_tokens"]}}}},"required":["id","choices","model","meta"]}}}}}}},"/api/v1/generate/prompt":{"post":{"summary":"Generate Response from Prompt","requestBody":{"content":{"application/json":{"schema":{"type":"object","properties":{"stream":{"type":"boolean"},"timeout":{"type":"number"},"maxRetries":{"type":"number"},"data":{"type":"object","properties":{"promptId":{"format":"uuid","type":"string"},"inputData":{"type":"object","properties":{}},"n":{"type":"number"},"language":{"type":"string"},"userId":{"type":"string"}},"required":["promptId","inputData","n","language","userId"]}},"required":["data"]}}},"required":true},"responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string"},"choices":{"type":"array","items":{"type":"object","properties":{"index":{"type":"number"},"text":{"type":"string"},"finish_reason":{"type":"string"},"role":{"type":"string"},"function_call":{}},"required":["index","text","finish_reason"]}},"model":{"type":"string"},"providerId":{"format":"uuid","type":"string"},"modelId":{"format":"uuid","type":"string"},"meta":{"type":"object","properties":{"usage":{"type":"object","properties":{"completion_tokens":{"type":"number"},"prompt_tokens":{"type":"number"},"total_tokens":{"type":"number"}},"required":["completion_tokens","prompt_tokens","total_tokens"]}}}},"required":["id","choices","model","meta"]}}}}}}},"/api/v1/generate/image":{"post":{"summary":"Generate Response from Image","requestBody":{"content":{"application/json":{"schema":{"type":"object","properties":{"stream":{"type":"boolean"},"data":{"type":"object","properties":{"imageUrl":{"type":"string"},"promptParams":{"type":"object","properties":{"messages":{"type":"array","items":{"type":"object","properties":{"role":{"anyOf":[{"type":"string","enum":["system"]},{"type":"string","enum":["user"]},{"type":"string","enum":["assistant"]}]},"content":{"type":"string"}},"required":["role","content"]}},"prompt":{"type":"string"},"temperature":{"type":"number"},"top_p":{"type":"number"},"n":{"type":"number"},"stop":{"anyOf":[{"type":"string"},{"type":"array","items":{"type":"string"}}]},"max_tokens":{"type":"number"},"presence_penalty":{"type":"number"},"frequency_penalty":{"type":"number"},"logit_bias":{},"user":{"type":"string"},"functions":{"type":"array","items":{"type":"object","properties":{}}},"function_call":{"type":"object","properties":{}}}}},"required":["imageUrl","promptParams"]}},"required":["data"]}}},"required":true},"responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"response":{"type":"string"}},"required":["response"]}}}}}}},"/api/v1/prompt/all":{"get":{"summary":"Get All Prompts","responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"format":"uuid","type":"string"},"title":{"type":"string"},"models":{"type":"array","items":{"format":"uuid","type":"string"}},"promptParams":{"type":"object","properties":{"messages":{"type":"array","items":{"type":"object","properties":{"role":{"anyOf":[{"type":"string","enum":["system"]},{"type":"string","enum":["user"]},{"type":"string","enum":["assistant"]}]},"content":{"type":"string"}},"required":["role","content"]}},"prompt":{"type":"string"},"temperature":{"type":"number"},"top_p":{"type":"number"},"n":{"type":"number"},"stop":{"anyOf":[{"type":"string"},{"type":"array","items":{"type":"string"}}]},"max_tokens":{"type":"number"},"presence_penalty":{"type":"number"},"frequency_penalty":{"type":"number"},"logit_bias":{},"user":{"type":"string"},"functions":{"type":"array","items":{"type":"object","properties":{}}},"function_call":{"type":"object","properties":{}}}},"isDeleted":{"type":"boolean"},"parentPromptId":{"format":"uuid","type":"string"},"versionNumber":{"type":"number"},"updateMessage":{"type":"string"},"createdAt":{"type":"object","instanceOf":"Date"},"updatedAt":{"type":"object","instanceOf":"Date"}},"required":["id","title","models","promptParams","isDeleted","parentPromptId","versionNumber","createdAt","updatedAt"]}}}}}}}},"/api/v1/prompt/{id}":{"get":{"summary":"Get a Prompt by Id","parameters":[{"schema":{"format":"uuid","type":"string"},"in":"path","name":"id","required":true}],"responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"format":"uuid","type":"string"},"title":{"type":"string"},"models":{"type":"array","items":{"format":"uuid","type":"string"}},"promptParams":{"type":"object","properties":{"messages":{"type":"array","items":{"type":"object","properties":{"role":{"anyOf":[{"type":"string","enum":["system"]},{"type":"string","enum":["user"]},{"type":"string","enum":["assistant"]}]},"content":{"type":"string"}},"required":["role","content"]}},"prompt":{"type":"string"},"temperature":{"type":"number"},"top_p":{"type":"number"},"n":{"type":"number"},"stop":{"anyOf":[{"type":"string"},{"type":"array","items":{"type":"string"}}]},"max_tokens":{"type":"number"},"presence_penalty":{"type":"number"},"frequency_penalty":{"type":"number"},"logit_bias":{},"user":{"type":"string"},"functions":{"type":"array","items":{"type":"object","properties":{}}},"function_call":{"type":"object","properties":{}}}},"isDeleted":{"type":"boolean"},"parentPromptId":{"format":"uuid","type":"string"},"versionNumber":{"type":"number"},"updateMessage":{"type":"string"},"createdAt":{"type":"object","instanceOf":"Date"},"updatedAt":{"type":"object","instanceOf":"Date"}},"required":["id","title","models","promptParams","isDeleted","parentPromptId","versionNumber","createdAt","updatedAt"]}}}}},"404":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string"}},"required":["message"]}}}}}},"put":{"summary":"Update a Prompt","requestBody":{"content":{"application/json":{"schema":{"type":"object","properties":{"title":{"type":"string"},"models":{"type":"array","items":{"format":"uuid","type":"string"}},"promptParams":{"type":"object","properties":{"messages":{"type":"array","items":{"type":"object","properties":{"role":{"anyOf":[{"type":"string","enum":["system"]},{"type":"string","enum":["user"]},{"type":"string","enum":["assistant"]}]},"content":{"type":"string"}},"required":["role","content"]}},"prompt":{"type":"string"},"temperature":{"type":"number"},"top_p":{"type":"number"},"n":{"type":"number"},"stop":{"anyOf":[{"type":"string"},{"type":"array","items":{"type":"string"}}]},"max_tokens":{"type":"number"},"presence_penalty":{"type":"number"},"frequency_penalty":{"type":"number"},"logit_bias":{},"user":{"type":"string"},"functions":{"type":"array","items":{"type":"object","properties":{}}},"function_call":{"type":"object","properties":{}}}}},"required":["promptParams"]}}},"required":true},"parameters":[{"schema":{"format":"uuid","type":"string"},"in":"path","name":"id","required":true}],"responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"format":"uuid","type":"string"},"title":{"type":"string"},"models":{"type":"array","items":{"format":"uuid","type":"string"}},"promptParams":{"type":"object","properties":{"messages":{"type":"array","items":{"type":"object","properties":{"role":{"anyOf":[{"type":"string","enum":["system"]},{"type":"string","enum":["user"]},{"type":"string","enum":["assistant"]}]},"content":{"type":"string"}},"required":["role","content"]}},"prompt":{"type":"string"},"temperature":{"type":"number"},"top_p":{"type":"number"},"n":{"type":"number"},"stop":{"anyOf":[{"type":"string"},{"type":"array","items":{"type":"string"}}]},"max_tokens":{"type":"number"},"presence_penalty":{"type":"number"},"frequency_penalty":{"type":"number"},"logit_bias":{},"user":{"type":"string"},"functions":{"type":"array","items":{"type":"object","properties":{}}},"function_call":{"type":"object","properties":{}}}},"isDeleted":{"type":"boolean"},"parentPromptId":{"format":"uuid","type":"string"},"versionNumber":{"type":"number"},"updateMessage":{"type":"string"},"createdAt":{"type":"object","instanceOf":"Date"},"updatedAt":{"type":"object","instanceOf":"Date"}},"required":["id","title","models","promptParams","isDeleted","parentPromptId","versionNumber","createdAt","updatedAt"]}}}},"404":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string"}},"required":["message"]}}}}}},"delete":{"summary":"Delete a Prompt","parameters":[{"schema":{"format":"uuid","type":"string"},"in":"path","name":"id","required":true}],"responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string"}},"required":["message"]}}}}}}},"/api/v1/prompt":{"post":{"summary":"Create a Prompt","requestBody":{"content":{"application/json":{"schema":{"type":"object","properties":{"id":{"format":"uuid","type":"string"},"title":{"type":"string"},"models":{"type":"array","items":{"format":"uuid","type":"string"}},"promptParams":{"type":"object","properties":{"messages":{"type":"array","items":{"type":"object","properties":{"role":{"anyOf":[{"type":"string","enum":["system"]},{"type":"string","enum":["user"]},{"type":"string","enum":["assistant"]}]},"content":{"type":"string"}},"required":["role","content"]}},"prompt":{"type":"string"},"temperature":{"type":"number"},"top_p":{"type":"number"},"n":{"type":"number"},"stop":{"anyOf":[{"type":"string"},{"type":"array","items":{"type":"string"}}]},"max_tokens":{"type":"number"},"presence_penalty":{"type":"number"},"frequency_penalty":{"type":"number"},"logit_bias":{},"user":{"type":"string"},"functions":{"type":"array","items":{"type":"object","properties":{}}},"function_call":{"type":"object","properties":{}}}},"parentPromptId":{"format":"uuid","type":"string"},"versionNumber":{"type":"number"},"updateMessage":{"type":"string"}},"required":["id","title","models","promptParams","parentPromptId","versionNumber"]}}},"required":true},"responses":{"201":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"format":"uuid","type":"string"},"title":{"type":"string"},"models":{"type":"array","items":{"format":"uuid","type":"string"}},"promptParams":{"type":"object","properties":{"messages":{"type":"array","items":{"type":"object","properties":{"role":{"anyOf":[{"type":"string","enum":["system"]},{"type":"string","enum":["user"]},{"type":"string","enum":["assistant"]}]},"content":{"type":"string"}},"required":["role","content"]}},"prompt":{"type":"string"},"temperature":{"type":"number"},"top_p":{"type":"number"},"n":{"type":"number"},"stop":{"anyOf":[{"type":"string"},{"type":"array","items":{"type":"string"}}]},"max_tokens":{"type":"number"},"presence_penalty":{"type":"number"},"frequency_penalty":{"type":"number"},"logit_bias":{},"user":{"type":"string"},"functions":{"type":"array","items":{"type":"object","properties":{}}},"function_call":{"type":"object","properties":{}}}},"isDeleted":{"type":"boolean"},"parentPromptId":{"format":"uuid","type":"string"},"versionNumber":{"type":"number"},"updateMessage":{"type":"string"},"createdAt":{"type":"object","instanceOf":"Date"},"updatedAt":{"type":"object","instanceOf":"Date"}},"required":["id","title","models","promptParams","isDeleted","parentPromptId","versionNumber","createdAt","updatedAt"]}}}}}}},"/api/v1/prompt/optimize":{"post":{"summary":"Optimize a Prompt","requestBody":{"content":{"application/json":{"schema":{"type":"object","properties":{"messages":{"type":"array","items":{"type":"object","properties":{"role":{"anyOf":[{"type":"string","enum":["system"]},{"type":"string","enum":["user"]},{"type":"string","enum":["assistant"]}]},"content":{"type":"string"}},"required":["role","content"]}}},"required":["messages"]}}},"required":true},"responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"role":{"anyOf":[{"type":"string","enum":["system"]},{"type":"string","enum":["user"]},{"type":"string","enum":["assistant"]}]},"content":{"type":"string"}},"required":["role","content"]}}}}}}}},"/api/v1/user/login":{"post":{"requestBody":{"content":{"application/json":{"schema":{"type":"object","properties":{"email":{"type":"string"},"password":{"type":"string"}},"required":["email","password"]}}},"required":true},"responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"format":"uuid","type":"string"},"email":{"type":"string"},"password":{"type":"string"},"role":{"anyOf":[{"type":"string","enum":["super_admin"]},{"type":"string","enum":["admin"]}]},"token":{"type":"string"}},"required":["id","email","password","role","token"]}}}},"401":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string"}},"required":["message"]}}}},"404":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string"}},"required":["message"]}}}}}}},"/api/v1/model-usage/model":{"get":{"summary":"Get All Usage by Model","parameters":[{"schema":{"format":"date-time","type":"string"},"in":"path","name":"startDate","required":true},{"schema":{"format":"date-time","type":"string"},"in":"path","name":"endDate","required":true}],"responses":{"200":{"description":"Default Response","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"modelId":{"format":"uuid","type":"string"},"data":{"type":"array","items":{"type":"object","properties":{"promptTokens":{"type":"number"},"completionTokens":{"type":"number"},"totalTokens":{"type":"number"},"cost":{"format":"float","type":"number"},"createdAt":{"format":"date-time","type":"string"}},"required":["promptTokens","completionTokens","totalTokens","cost","createdAt"]}}},"required":["modelId","data"]}}}}},"404":{"description":"Default Response","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string"}},"required":["message"]}}}}}}}},"servers":[{"url":"http://localhost"}]}
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Test swagger", "description": "testing the fastify swagger api", "version": "0.1.0" },
+  "components": {
+    "securitySchemes": { "apiKey": { "type": "apiKey", "name": "apiKey", "in": "header" } },
+    "schemas": {}
+  },
+  "paths": {
+    "/api/v1/model/all": {
+      "get": {
+        "summary": "Get All Models",
+        "description": "Get all models",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "format": "uuid", "type": "string" },
+                      "name": { "type": "string" },
+                      "providerId": { "format": "uuid", "type": "string" },
+                      "createdAt": { "type": "object", "instanceOf": "Date" },
+                      "updatedAt": { "type": "object", "instanceOf": "Date" },
+                      "providerName": { "type": "string" },
+                      "inputType": {
+                        "anyOf": [
+                          { "type": "string", "enum": ["prompt"] },
+                          { "type": "string", "enum": ["messages"] }
+                        ]
+                      },
+                      "order": { "type": "number" }
+                    },
+                    "required": ["id", "name", "providerId", "createdAt", "updatedAt", "inputType", "order"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model/{id}": {
+      "get": {
+        "summary": "Get All Models by Id",
+        "parameters": [
+          { "schema": { "format": "uuid", "type": "string" }, "in": "path", "name": "id", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "format": "uuid", "type": "string" },
+                    "name": { "type": "string" },
+                    "providerId": { "format": "uuid", "type": "string" },
+                    "createdAt": { "type": "object", "instanceOf": "Date" },
+                    "updatedAt": { "type": "object", "instanceOf": "Date" },
+                    "providerName": { "type": "string" },
+                    "inputType": {
+                      "anyOf": [
+                        { "type": "string", "enum": ["prompt"] },
+                        { "type": "string", "enum": ["messages"] }
+                      ]
+                    },
+                    "order": { "type": "number" }
+                  },
+                  "required": ["id", "name", "providerId", "createdAt", "updatedAt", "inputType", "order"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "message": { "type": "string" } },
+                  "required": ["message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/healthcheck": {
+      "post": {
+        "summary": "Application Health Check",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "format": "uuid", "type": "string" },
+                      "modelId": { "format": "uuid", "type": "string" },
+                      "providerId": { "format": "uuid", "type": "string" },
+                      "status": { "type": "string" },
+                      "isAvailable": { "type": "boolean" },
+                      "latency": { "type": "number" },
+                      "lastChecked": { "format": "date-time", "type": "string" }
+                    },
+                    "required": ["id", "modelId", "providerId", "status", "isAvailable", "lastChecked"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get Health Check Data",
+        "parameters": [
+          {
+            "schema": { "format": "date-time", "type": "string" },
+            "in": "path",
+            "name": "startDate",
+            "required": true
+          },
+          { "schema": { "format": "date-time", "type": "string" }, "in": "path", "name": "endDate", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "modelId": { "format": "uuid", "type": "string" },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "time": { "format": "date-time", "type": "string" },
+                            "isAvailable": { "type": "boolean" },
+                            "latency": { "format": "float", "type": "number" }
+                          },
+                          "required": ["time", "isAvailable", "latency"]
+                        }
+                      }
+                    },
+                    "required": ["modelId", "data"]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "message": { "type": "string" } },
+                  "required": ["message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/provider/all": {
+      "get": {
+        "summary": "Get all providers",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "format": "uuid", "type": "string" },
+                      "name": { "type": "string" },
+                      "createdAt": { "type": "object", "instanceOf": "Date" },
+                      "updatedAt": { "type": "object", "instanceOf": "Date" }
+                    },
+                    "required": ["id", "name", "createdAt", "updatedAt"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/generate": {
+      "post": {
+        "summary": "Generate Response",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "stream": { "type": "boolean" },
+                  "timeout": { "type": "number" },
+                  "maxRetries": { "type": "number" },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "providerId": { "format": "uuid", "type": "string" },
+                        "modelId": { "format": "uuid", "type": "string" },
+                        "promptParams": {
+                          "type": "object",
+                          "properties": {
+                            "messages": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "role": {
+                                    "anyOf": [
+                                      { "type": "string", "enum": ["system"] },
+                                      { "type": "string", "enum": ["user"] },
+                                      { "type": "string", "enum": ["assistant"] }
+                                    ]
+                                  },
+                                  "content": { "type": "string" }
+                                },
+                                "required": ["role", "content"]
+                              }
+                            },
+                            "prompt": { "type": "string" },
+                            "temperature": { "type": "number" },
+                            "top_p": { "type": "number" },
+                            "n": { "type": "number" },
+                            "stop": {
+                              "anyOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }]
+                            },
+                            "max_tokens": { "type": "number" },
+                            "presence_penalty": { "type": "number" },
+                            "frequency_penalty": { "type": "number" },
+                            "logit_bias": {},
+                            "user": { "type": "string" },
+                            "functions": { "type": "array", "items": { "type": "object", "properties": {} } },
+                            "function_call": { "type": "object", "properties": {} }
+                          }
+                        },
+                        "order": { "type": "number" }
+                      },
+                      "required": ["providerId", "modelId", "promptParams", "order"]
+                    }
+                  }
+                },
+                "required": ["data"]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "choices": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "index": { "type": "number" },
+                          "text": { "type": "string" },
+                          "finish_reason": { "type": "string" },
+                          "role": { "type": "string" },
+                          "function_call": {}
+                        },
+                        "required": ["index", "text", "finish_reason"]
+                      }
+                    },
+                    "model": { "type": "string" },
+                    "providerId": { "format": "uuid", "type": "string" },
+                    "modelId": { "format": "uuid", "type": "string" },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "usage": {
+                          "type": "object",
+                          "properties": {
+                            "completion_tokens": { "type": "number" },
+                            "prompt_tokens": { "type": "number" },
+                            "total_tokens": { "type": "number" }
+                          },
+                          "required": ["completion_tokens", "prompt_tokens", "total_tokens"]
+                        }
+                      }
+                    }
+                  },
+                  "required": ["id", "choices", "model", "meta"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/generate/prompt": {
+      "post": {
+        "summary": "Generate Response from Prompt",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "stream": { "type": "boolean" },
+                  "timeout": { "type": "number" },
+                  "maxRetries": { "type": "number" },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "promptId": { "format": "uuid", "type": "string" },
+                      "inputData": { "type": "object", "properties": {} },
+                      "n": { "type": "number" },
+                      "language": { "type": "string" },
+                      "userId": { "type": "string" }
+                    },
+                    "required": ["promptId", "inputData", "n", "language", "userId"]
+                  }
+                },
+                "required": ["data"]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "choices": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "index": { "type": "number" },
+                          "text": { "type": "string" },
+                          "finish_reason": { "type": "string" },
+                          "role": { "type": "string" },
+                          "function_call": {}
+                        },
+                        "required": ["index", "text", "finish_reason"]
+                      }
+                    },
+                    "model": { "type": "string" },
+                    "providerId": { "format": "uuid", "type": "string" },
+                    "modelId": { "format": "uuid", "type": "string" },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "usage": {
+                          "type": "object",
+                          "properties": {
+                            "completion_tokens": { "type": "number" },
+                            "prompt_tokens": { "type": "number" },
+                            "total_tokens": { "type": "number" }
+                          },
+                          "required": ["completion_tokens", "prompt_tokens", "total_tokens"]
+                        }
+                      }
+                    }
+                  },
+                  "required": ["id", "choices", "model", "meta"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/generate/image": {
+      "post": {
+        "summary": "Generate Response from Image",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "stream": { "type": "boolean" },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "imageUrl": { "type": "string" },
+                      "promptParams": {
+                        "type": "object",
+                        "properties": {
+                          "messages": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "role": {
+                                  "anyOf": [
+                                    { "type": "string", "enum": ["system"] },
+                                    { "type": "string", "enum": ["user"] },
+                                    { "type": "string", "enum": ["assistant"] }
+                                  ]
+                                },
+                                "content": { "type": "string" }
+                              },
+                              "required": ["role", "content"]
+                            }
+                          },
+                          "prompt": { "type": "string" },
+                          "temperature": { "type": "number" },
+                          "top_p": { "type": "number" },
+                          "n": { "type": "number" },
+                          "stop": {
+                            "anyOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }]
+                          },
+                          "max_tokens": { "type": "number" },
+                          "presence_penalty": { "type": "number" },
+                          "frequency_penalty": { "type": "number" },
+                          "logit_bias": {},
+                          "user": { "type": "string" },
+                          "functions": { "type": "array", "items": { "type": "object", "properties": {} } },
+                          "function_call": { "type": "object", "properties": {} }
+                        }
+                      }
+                    },
+                    "required": ["imageUrl", "promptParams"]
+                  }
+                },
+                "required": ["data"]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "response": { "type": "string" } },
+                  "required": ["response"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/prompt/all": {
+      "get": {
+        "summary": "Get All Prompts",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "format": "uuid", "type": "string" },
+                      "title": { "type": "string" },
+                      "models": { "type": "array", "items": { "format": "uuid", "type": "string" } },
+                      "promptParams": {
+                        "type": "object",
+                        "properties": {
+                          "messages": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "role": {
+                                  "anyOf": [
+                                    { "type": "string", "enum": ["system"] },
+                                    { "type": "string", "enum": ["user"] },
+                                    { "type": "string", "enum": ["assistant"] }
+                                  ]
+                                },
+                                "content": { "type": "string" }
+                              },
+                              "required": ["role", "content"]
+                            }
+                          },
+                          "prompt": { "type": "string" },
+                          "temperature": { "type": "number" },
+                          "top_p": { "type": "number" },
+                          "n": { "type": "number" },
+                          "stop": {
+                            "anyOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }]
+                          },
+                          "max_tokens": { "type": "number" },
+                          "presence_penalty": { "type": "number" },
+                          "frequency_penalty": { "type": "number" },
+                          "logit_bias": {},
+                          "user": { "type": "string" },
+                          "functions": { "type": "array", "items": { "type": "object", "properties": {} } },
+                          "function_call": { "type": "object", "properties": {} }
+                        }
+                      },
+                      "isDeleted": { "type": "boolean" },
+                      "parentPromptId": { "format": "uuid", "type": "string" },
+                      "versionNumber": { "type": "number" },
+                      "updateMessage": { "type": "string" },
+                      "createdAt": { "type": "object", "instanceOf": "Date" },
+                      "updatedAt": { "type": "object", "instanceOf": "Date" }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "models",
+                      "promptParams",
+                      "isDeleted",
+                      "parentPromptId",
+                      "versionNumber",
+                      "createdAt",
+                      "updatedAt"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/prompt/{id}": {
+      "get": {
+        "summary": "Get a Prompt by Id",
+        "parameters": [
+          { "schema": { "format": "uuid", "type": "string" }, "in": "path", "name": "id", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "format": "uuid", "type": "string" },
+                      "title": { "type": "string" },
+                      "models": { "type": "array", "items": { "format": "uuid", "type": "string" } },
+                      "promptParams": {
+                        "type": "object",
+                        "properties": {
+                          "messages": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "role": {
+                                  "anyOf": [
+                                    { "type": "string", "enum": ["system"] },
+                                    { "type": "string", "enum": ["user"] },
+                                    { "type": "string", "enum": ["assistant"] }
+                                  ]
+                                },
+                                "content": { "type": "string" }
+                              },
+                              "required": ["role", "content"]
+                            }
+                          },
+                          "prompt": { "type": "string" },
+                          "temperature": { "type": "number" },
+                          "top_p": { "type": "number" },
+                          "n": { "type": "number" },
+                          "stop": {
+                            "anyOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }]
+                          },
+                          "max_tokens": { "type": "number" },
+                          "presence_penalty": { "type": "number" },
+                          "frequency_penalty": { "type": "number" },
+                          "logit_bias": {},
+                          "user": { "type": "string" },
+                          "functions": { "type": "array", "items": { "type": "object", "properties": {} } },
+                          "function_call": { "type": "object", "properties": {} }
+                        }
+                      },
+                      "isDeleted": { "type": "boolean" },
+                      "parentPromptId": { "format": "uuid", "type": "string" },
+                      "versionNumber": { "type": "number" },
+                      "updateMessage": { "type": "string" },
+                      "createdAt": { "type": "object", "instanceOf": "Date" },
+                      "updatedAt": { "type": "object", "instanceOf": "Date" }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "models",
+                      "promptParams",
+                      "isDeleted",
+                      "parentPromptId",
+                      "versionNumber",
+                      "createdAt",
+                      "updatedAt"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "message": { "type": "string" } },
+                  "required": ["message"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a Prompt",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": { "type": "string" },
+                  "models": { "type": "array", "items": { "format": "uuid", "type": "string" } },
+                  "promptParams": {
+                    "type": "object",
+                    "properties": {
+                      "messages": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "role": {
+                              "anyOf": [
+                                { "type": "string", "enum": ["system"] },
+                                { "type": "string", "enum": ["user"] },
+                                { "type": "string", "enum": ["assistant"] }
+                              ]
+                            },
+                            "content": { "type": "string" }
+                          },
+                          "required": ["role", "content"]
+                        }
+                      },
+                      "prompt": { "type": "string" },
+                      "temperature": { "type": "number" },
+                      "top_p": { "type": "number" },
+                      "n": { "type": "number" },
+                      "stop": { "anyOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }] },
+                      "max_tokens": { "type": "number" },
+                      "presence_penalty": { "type": "number" },
+                      "frequency_penalty": { "type": "number" },
+                      "logit_bias": {},
+                      "user": { "type": "string" },
+                      "functions": { "type": "array", "items": { "type": "object", "properties": {} } },
+                      "function_call": { "type": "object", "properties": {} }
+                    }
+                  }
+                },
+                "required": ["promptParams"]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          { "schema": { "format": "uuid", "type": "string" }, "in": "path", "name": "id", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "format": "uuid", "type": "string" },
+                    "title": { "type": "string" },
+                    "models": { "type": "array", "items": { "format": "uuid", "type": "string" } },
+                    "promptParams": {
+                      "type": "object",
+                      "properties": {
+                        "messages": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "role": {
+                                "anyOf": [
+                                  { "type": "string", "enum": ["system"] },
+                                  { "type": "string", "enum": ["user"] },
+                                  { "type": "string", "enum": ["assistant"] }
+                                ]
+                              },
+                              "content": { "type": "string" }
+                            },
+                            "required": ["role", "content"]
+                          }
+                        },
+                        "prompt": { "type": "string" },
+                        "temperature": { "type": "number" },
+                        "top_p": { "type": "number" },
+                        "n": { "type": "number" },
+                        "stop": { "anyOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }] },
+                        "max_tokens": { "type": "number" },
+                        "presence_penalty": { "type": "number" },
+                        "frequency_penalty": { "type": "number" },
+                        "logit_bias": {},
+                        "user": { "type": "string" },
+                        "functions": { "type": "array", "items": { "type": "object", "properties": {} } },
+                        "function_call": { "type": "object", "properties": {} }
+                      }
+                    },
+                    "isDeleted": { "type": "boolean" },
+                    "parentPromptId": { "format": "uuid", "type": "string" },
+                    "versionNumber": { "type": "number" },
+                    "updateMessage": { "type": "string" },
+                    "createdAt": { "type": "object", "instanceOf": "Date" },
+                    "updatedAt": { "type": "object", "instanceOf": "Date" }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "models",
+                    "promptParams",
+                    "isDeleted",
+                    "parentPromptId",
+                    "versionNumber",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "message": { "type": "string" } },
+                  "required": ["message"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a Prompt",
+        "parameters": [
+          { "schema": { "format": "uuid", "type": "string" }, "in": "path", "name": "id", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "message": { "type": "string" } },
+                  "required": ["message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/prompt": {
+      "post": {
+        "summary": "Create a Prompt",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": { "format": "uuid", "type": "string" },
+                  "title": { "type": "string" },
+                  "models": { "type": "array", "items": { "format": "uuid", "type": "string" } },
+                  "promptParams": {
+                    "type": "object",
+                    "properties": {
+                      "messages": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "role": {
+                              "anyOf": [
+                                { "type": "string", "enum": ["system"] },
+                                { "type": "string", "enum": ["user"] },
+                                { "type": "string", "enum": ["assistant"] }
+                              ]
+                            },
+                            "content": { "type": "string" }
+                          },
+                          "required": ["role", "content"]
+                        }
+                      },
+                      "prompt": { "type": "string" },
+                      "temperature": { "type": "number" },
+                      "top_p": { "type": "number" },
+                      "n": { "type": "number" },
+                      "stop": { "anyOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }] },
+                      "max_tokens": { "type": "number" },
+                      "presence_penalty": { "type": "number" },
+                      "frequency_penalty": { "type": "number" },
+                      "logit_bias": {},
+                      "user": { "type": "string" },
+                      "functions": { "type": "array", "items": { "type": "object", "properties": {} } },
+                      "function_call": { "type": "object", "properties": {} }
+                    }
+                  },
+                  "parentPromptId": { "format": "uuid", "type": "string" },
+                  "versionNumber": { "type": "number" },
+                  "updateMessage": { "type": "string" }
+                },
+                "required": ["id", "title", "models", "promptParams", "parentPromptId", "versionNumber"]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "format": "uuid", "type": "string" },
+                    "title": { "type": "string" },
+                    "models": { "type": "array", "items": { "format": "uuid", "type": "string" } },
+                    "promptParams": {
+                      "type": "object",
+                      "properties": {
+                        "messages": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "role": {
+                                "anyOf": [
+                                  { "type": "string", "enum": ["system"] },
+                                  { "type": "string", "enum": ["user"] },
+                                  { "type": "string", "enum": ["assistant"] }
+                                ]
+                              },
+                              "content": { "type": "string" }
+                            },
+                            "required": ["role", "content"]
+                          }
+                        },
+                        "prompt": { "type": "string" },
+                        "temperature": { "type": "number" },
+                        "top_p": { "type": "number" },
+                        "n": { "type": "number" },
+                        "stop": { "anyOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }] },
+                        "max_tokens": { "type": "number" },
+                        "presence_penalty": { "type": "number" },
+                        "frequency_penalty": { "type": "number" },
+                        "logit_bias": {},
+                        "user": { "type": "string" },
+                        "functions": { "type": "array", "items": { "type": "object", "properties": {} } },
+                        "function_call": { "type": "object", "properties": {} }
+                      }
+                    },
+                    "isDeleted": { "type": "boolean" },
+                    "parentPromptId": { "format": "uuid", "type": "string" },
+                    "versionNumber": { "type": "number" },
+                    "updateMessage": { "type": "string" },
+                    "createdAt": { "type": "object", "instanceOf": "Date" },
+                    "updatedAt": { "type": "object", "instanceOf": "Date" }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "models",
+                    "promptParams",
+                    "isDeleted",
+                    "parentPromptId",
+                    "versionNumber",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/prompt/optimize": {
+      "post": {
+        "summary": "Optimize a Prompt",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "messages": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "role": {
+                          "anyOf": [
+                            { "type": "string", "enum": ["system"] },
+                            { "type": "string", "enum": ["user"] },
+                            { "type": "string", "enum": ["assistant"] }
+                          ]
+                        },
+                        "content": { "type": "string" }
+                      },
+                      "required": ["role", "content"]
+                    }
+                  }
+                },
+                "required": ["messages"]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "anyOf": [
+                          { "type": "string", "enum": ["system"] },
+                          { "type": "string", "enum": ["user"] },
+                          { "type": "string", "enum": ["assistant"] }
+                        ]
+                      },
+                      "content": { "type": "string" }
+                    },
+                    "required": ["role", "content"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/login": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": { "email": { "type": "string" }, "password": { "type": "string" } },
+                "required": ["email", "password"]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "format": "uuid", "type": "string" },
+                    "email": { "type": "string" },
+                    "password": { "type": "string" },
+                    "role": {
+                      "anyOf": [
+                        { "type": "string", "enum": ["super_admin"] },
+                        { "type": "string", "enum": ["admin"] }
+                      ]
+                    },
+                    "token": { "type": "string" }
+                  },
+                  "required": ["id", "email", "password", "role", "token"]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "message": { "type": "string" } },
+                  "required": ["message"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "message": { "type": "string" } },
+                  "required": ["message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-usage/model": {
+      "get": {
+        "summary": "Get All Usage by Model",
+        "parameters": [
+          {
+            "schema": { "format": "date-time", "type": "string" },
+            "in": "path",
+            "name": "startDate",
+            "required": true
+          },
+          { "schema": { "format": "date-time", "type": "string" }, "in": "path", "name": "endDate", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "modelId": { "format": "uuid", "type": "string" },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "promptTokens": { "type": "number" },
+                            "completionTokens": { "type": "number" },
+                            "totalTokens": { "type": "number" },
+                            "cost": { "format": "float", "type": "number" },
+                            "createdAt": { "format": "date-time", "type": "string" }
+                          },
+                          "required": ["promptTokens", "completionTokens", "totalTokens", "cost", "createdAt"]
+                        }
+                      }
+                    },
+                    "required": ["modelId", "data"]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "message": { "type": "string" } },
+                  "required": ["message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [{ "url": "http://localhost" }]
+}
