@@ -28,6 +28,7 @@ export const verifyUser = async (
       });
       return;
     } else {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const token = await reply.jwtSign({
         id: user?.id,

@@ -17,6 +17,7 @@ export const getUsageDataByModel = async (
   reply: FastifyReplyTypebox<typeof GetAllUsageByModelSchema>,
 ) => {
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { startDate, endDate } = request.query;
     const endDatePlus1 = new Date(endDate);

@@ -8,7 +8,7 @@ import { TypeCompiler } from "@sinclair/typebox/compiler";
  * @returns {T} - The validated data
  * @throws {Error} - If the data does not match the schema
  */
-export const validateData = <T extends unknown>(schema: TObject, data: any): T => {
+export const validateData = <T>(schema: TObject, data: any): T => {
   const C = TypeCompiler.Compile(schema);
   // remove extra fields from data
   const properties = schema.properties;

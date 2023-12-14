@@ -38,18 +38,14 @@ export class CohereProvider extends Provider<CohereInputParamsSchema> {
   }
 
   protected override transform(promptParams: BasePromptParams): Record<string, unknown> {
-    let params: Record<string, unknown> = { ...promptParams };
+    const params: Record<string, unknown> = { ...promptParams };
     if (promptParams?.n !== undefined && promptParams?.n !== null) {
       params.num_generations = params?.n;
     }
     return params;
   }
 
-  protected async *performStreamGeneration(
-    params: CohereInputParamsSchema,
-    timeout: number,
-    maxRetries: number,
-  ): AsyncGenerator<any> {
+  protected async *performStreamGeneration(): AsyncGenerator<any> {
     throw new ApiError(400, `Stream not supported for provider ${Providers.COHERE}`);
   }
 

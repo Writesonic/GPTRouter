@@ -47,6 +47,7 @@ export const getModelById = async (
   reply: FastifyReplyTypebox<typeof GetModelByIdSchema>,
 ) => {
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { id } = request.params;
     const response = await request.server.orm.getRepository(Model).findOne({ where: { id: id } });

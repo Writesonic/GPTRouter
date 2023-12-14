@@ -55,6 +55,7 @@ export const getPromptById = async (
   reply: FastifyReplyTypebox<typeof GetPromptByIdSchema>,
 ) => {
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { id } = request.params;
     const prompt = await request.server.orm.getRepository(Prompt).findOne({ where: { id: id, isDeleted: false } });
@@ -102,6 +103,7 @@ export const updatePrompt = async (
   reply: FastifyReplyTypebox<typeof UpdatePromptSchema>,
 ) => {
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { id } = request.params;
     const prompt = await request.server.orm.getRepository(Prompt).findOne({ where: { id: id } });
@@ -109,7 +111,7 @@ export const updatePrompt = async (
     if (!prompt) {
       reply.code(404).send({ message: "Prompt not found" });
     }
-    const data = await request.server.orm.getRepository(Prompt).update(id, request.body);
+    await request.server.orm.getRepository(Prompt).update(id, request.body);
     const res = await request.server.orm.getRepository(Prompt).findOne({ where: { id: id } });
     if (!res) {
       reply.code(404).send({ message: "Prompt not found" });
@@ -133,13 +135,14 @@ export const deletePrompt = async (
   reply: FastifyReplyTypebox<typeof DeletePromptSchema>,
 ) => {
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { id } = request.params;
     const prompt = await request.server.orm.getRepository(Prompt).findOne({ where: { id: id } });
     if (!prompt) {
       reply.code(404).send({ message: ERROR_MESSAGES.PROMPT_NOT_FOUND });
     }
-    const data = await request.server.orm.getRepository(Prompt).update(id, { isDeleted: true });
+    await request.server.orm.getRepository(Prompt).update(id, { isDeleted: true });
     reply.code(200).send({ message: "Prompt deleted Successfully" });
   } catch (e: any) {
     Sentry.captureException(e);
@@ -172,7 +175,7 @@ export const optimizePrompt = async (
     const selectedModel = await request.server.orm
       .getRepository(Model)
       .findOne({ where: { name: "gpt-4-0613" }, relations: ["provider"] });
-    let newMessages: any = [];
+    const newMessages: any = [];
     if (selectedModel) {
       for (const message of messages) {
         const OptimizePromptmessages = [

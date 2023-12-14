@@ -20,9 +20,10 @@ export default async function updateHealthCheck(params: HealthCheckParams, orm: 
   const { modelId, providerId, isAvailable, status, latency } = params;
   const updateData = { isAvailable, status, latency };
 
-  const healthCheckObj = await orm
-    .getRepository(ModelHealthCheck)
-    .findOne({ where: { modelId: modelId, providerId: providerId } });
+  // TODO: @typescript-eslint/no-unused-vars
+  // const healthCheckObj = await orm
+  //   .getRepository(ModelHealthCheck)
+  //   .findOne({ where: { modelId: modelId, providerId: providerId } });
 
   await orm
     .getRepository(ModelHealthCheck)

@@ -11,7 +11,7 @@ const providers = Object.values(Providers);
  */
 export default async function initProviders(orm: DataSource) {
   const existingProviders = await orm.createQueryBuilder().select("provider").from(Provider, "provider").getMany();
-  let filterdProviders = providers.filter(
+  const filterdProviders = providers.filter(
     provider => !existingProviders.find(existingProvider => existingProvider.name === provider),
   );
 

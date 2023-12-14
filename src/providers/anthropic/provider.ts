@@ -55,7 +55,7 @@ export class AnthropicProvider extends Provider<AnthropicInputParamsSchema> {
   }
 
   protected override transform(promptParams: BasePromptParams): Record<string, unknown> {
-    let params: Record<string, unknown> = { ...promptParams };
+    const params: Record<string, unknown> = { ...promptParams };
     if (promptParams?.max_tokens !== undefined && promptParams?.max_tokens !== null) {
       params.max_tokens_to_sample = params?.max_tokens;
     } else {

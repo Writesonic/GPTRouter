@@ -1,7 +1,6 @@
 import { Static, Type } from "@sinclair/typebox";
 
 import { ImageChatModels } from "../constants";
-import { ChatOpenaiInputParamsSchema, OpenaiInputParamsSchema } from "./providerSchemas";
 
 /**
  * Represents roles for the chat messages

@@ -1,21 +1,9 @@
 /**
  * Entity representing a Prompt in the database.
  */
-import {
-  BaseEntity,
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 import { PromptParamsProperties } from "../types/prompt.interface";
-import { Model } from "./Model";
 
 @Entity()
 export class Prompt extends BaseEntity {

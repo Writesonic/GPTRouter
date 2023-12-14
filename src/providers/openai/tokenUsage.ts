@@ -10,6 +10,7 @@ import { encodingForModel } from "js-tiktoken";
  */
 export default async function getTokenUsage(prompt: string, completion: string, model: string) {
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const enc = encodingForModel(model);
     const promptTokens = enc.encode(prompt)?.length;

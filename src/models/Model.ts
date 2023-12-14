@@ -15,7 +15,6 @@ import { ModelInputType } from "../constants";
 import { ModelCost } from "./ModelCost";
 import { ModelHealthCheck } from "./ModelHealthCheck";
 import { ModelUsage } from "./ModelUsage";
-import { Prompt } from "./Prompt";
 import { Provider } from "./Provider";
 
 /**

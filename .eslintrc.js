@@ -1,6 +1,6 @@
 module.exports = {
   parser: "@typescript-eslint/parser",
-  plugins: ["simple-import-sort"],
+  plugins: ["@typescript-eslint", "simple-import-sort"],
   rules: {
     "simple-import-sort/imports": [
       2,
@@ -25,4 +25,35 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ["*.ts", "*.tsx"],
+      extends: ["plugin:@typescript-eslint/recommended"],
+      parserOptions: {
+        project: ["./tsconfig.json"],
+      },
+      rules: {
+        "@typescript-eslint/interface-name-prefix": 0,
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "@typescript-eslint/no-unused-vars": 2,
+        "@typescript-eslint/no-explicit-any": [
+          1,
+          {
+            ignoreRestArgs: true,
+          },
+        ],
+        "@typescript-eslint/naming-convention": [2, { selector: "typeLike", format: ["PascalCase"] }],
+        "@typescript-eslint/ban-types": [
+          2,
+          {
+            extendDefaults: true,
+            types: {
+              "{}": false,
+            },
+          },
+        ],
+      },
+    },
+  ],
 };
