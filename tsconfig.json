@@ -6,22 +6,23 @@
         "module": "commonjs",
         "rootDir": "./src",
         "moduleResolution": "node",
-
         "typeRoots": [
             "./@types",
             "./node_modules/@types",
         ],
-
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": false,
         "strict": true,
         "strictPropertyInitialization": false,
         "skipLibCheck": true,
+        "outDir": "./dist",
     },
     "typedocOptions": {
         "entryPointStrategy": "expand",
         "out": "./docs/docs/03-code",
         // "externalPattern": "**/node_modules/**",
     },
-    "exclude": ["docs"]
+    "exclude": [
+        "docs"
+    ]
 }

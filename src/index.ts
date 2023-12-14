@@ -10,26 +10,24 @@ import buildServer from "./server";
  * @returns {Promise<void>} A promise that resolves when the server is successfully started
  */
 async function main() {
-    const server = await buildServer();
-    try {
-        await server.listen({
-            port: 8000,
-            host: "0.0.0.0",
-        });
+  const server = await buildServer();
+  try {
+    await server.listen({
+      port: 8000,
+      host: "0.0.0.0",
+    });
 
-        ["SIGINT", "SIGTERM"].forEach((signal) => {
-            process.on(signal, async () => {
-                server.log.info("Shutting down server...");
-                await server.close();
-                process.exit(0);
-            });
-        });
-
-    } catch (err) {
-        server.log.error(err);
-        process.exit(1);
-    }
-
+    ["SIGINT", "SIGTERM"].forEach((signal) => {
+      process.on(signal, async () => {
+        server.log.info("Shutting down server...");
+        await server.close();
+        process.exit(0);
+      });
+    });
+  } catch (err) {
+    server.log.error(err as object);
+    process.exit(1);
+  }
 }
 
 main();
