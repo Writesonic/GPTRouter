@@ -1,6 +1,4 @@
-
 ## Async Non Streaming Generation
-
 
 ```python
 
@@ -25,7 +23,7 @@ load_dotenv()
 async def async_generate_text(input_prompt: str):
     # Initialize the GPTRouter with the base URL and API key
     client = GPTRouterClient(base_url=DEFAULT_API_BASE_URL, api_key=os.getenv('GPT_ROUTER_API_TOKEN'))
-    
+
     logging.info(f"Started async task for input_prompt: {input_prompt}")
     # Define messages to be sent to the model
     messages = [
@@ -45,7 +43,7 @@ async def async_generate_text(input_prompt: str):
 
     # Perform an asynchronous, non-streaming generation request
     response = await client.agenerate(ordered_generation_requests=[generation_request])
-    
+
     return response.choices[0].text
 
 async def main(text_batch: List[str]):

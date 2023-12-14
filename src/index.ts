@@ -17,7 +17,7 @@ async function main() {
       host: "0.0.0.0",
     });
 
-    ["SIGINT", "SIGTERM"].forEach((signal) => {
+    ["SIGINT", "SIGTERM"].forEach(signal => {
       process.on(signal, async () => {
         server.log.info("Shutting down server...");
         await server.close();

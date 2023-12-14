@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "lint": "eslint --ignore-path .eslintignore \"src/**/*.{ts,tsx}\"",
+    "prepare": "husky install"
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.10.0",
     "@anthropic-ai/tokenizer": "^0.0.4",
@@ -36,13 +42,24 @@
     "@types/cron": "^2.4.0",
     "@types/eventsource": "^1.1.15",
     "@types/node": "^20.3.1",
+    "@typescript-eslint/parser": "^6.14.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "nodemon": "^2.0.22",
     "pino-pretty": "^10.0.0",
+    "prettier": "^3.1.1",
     "typedoc": "^0.25.4",
     "typescript": "^5.1.5"
   },
-  "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+  "lint-staged": {
+    "*.{js,ts,json,css,scss,md}": [
+      "prettier --write"
+    ],
+    "*.ts": [
+      "eslint"
+    ],
+    "*.js": "eslint --cache --fix"
   }
 }

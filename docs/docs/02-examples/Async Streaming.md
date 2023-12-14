@@ -1,6 +1,3 @@
-
-
-
 ```python
 
 
@@ -57,12 +54,12 @@ async def main(text_batch: List[str]):
         logger.info(f"{task_id} - Streaming started at {datetime.now()}: {time.time() - start} seconds since start")
         async for chunk in response:
             if chunk.event != StreamingEventType.UPDATE.value:
-                continue  
+                continue
             logger.info(f"{task_id} - Received event at {datetime.now()}: {chunk}")
         logger.info(f"{task_id} - Streaming ended at {datetime.now()}: {time.time() - start} seconds for task")
 
 # Run the async function using asyncio
 if __name__ == "__main__":
     asyncio.run(main(["Write a 2 line poem", "Write a 3 line poem"]))
-    
+
 ```

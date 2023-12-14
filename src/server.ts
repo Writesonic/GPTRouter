@@ -1,35 +1,34 @@
+import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
+import * as Sentry from "@sentry/node";
 import Fastify from "fastify";
-import initSwagger from "./swagger";
-import initRoutes from "./routes";
-import dbConn from "typeorm-fastify-plugin";
-import PostgresDataSource from "./plugins/db";
-import { FastifySSEPlugin } from "fastify-sse-v2";
-
 import {
+  ContextConfigDefault,
   FastifyReply,
   FastifyRequest,
+  RawReplyDefaultExpression,
   RawRequestDefaultExpression,
   RawServerDefault,
-  RawReplyDefaultExpression,
-  ContextConfigDefault,
 } from "fastify";
 import { RouteGenericInterface } from "fastify/types/route";
 import { FastifySchema } from "fastify/types/schema";
-import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 import fastifyCron from "fastify-cron";
-import { HEALTH_CHECK_CRON_JOB_EXPRESSION } from "./constants";
-import initData from "./scripts";
-import * as Sentry from "@sentry/node";
-import { User } from "./models/User";
+import { FastifySSEPlugin } from "fastify-sse-v2";
+import dbConn from "typeorm-fastify-plugin";
 
-export type FastifyRequestTypebox<TSchema extends FastifySchema> =
-  FastifyRequest<
-    RouteGenericInterface,
-    RawServerDefault,
-    RawRequestDefaultExpression<RawServerDefault>,
-    TSchema,
-    TypeBoxTypeProvider
-  >;
+import { HEALTH_CHECK_CRON_JOB_EXPRESSION } from "./constants";
+import { User } from "./models/User";
+import PostgresDataSource from "./plugins/db";
+import initRoutes from "./routes";
+import initData from "./scripts";
+import initSwagger from "./swagger";
+
+export type FastifyRequestTypebox<TSchema extends FastifySchema> = FastifyRequest<
+  RouteGenericInterface,
+  RawServerDefault,
+  RawRequestDefaultExpression<RawServerDefault>,
+  TSchema,
+  TypeBoxTypeProvider
+>;
 
 export type FastifyReplyTypebox<TSchema extends FastifySchema> = FastifyReply<
   RawServerDefault,
@@ -94,9 +93,7 @@ async function buildServer() {
       }
 
       const orm = request.server.orm;
-      const user = await orm
-        .getRepository(User)
-        .findOne({ where: { apikey: secret } });
+      const user = await orm.getRepository(User).findOne({ where: { apikey: secret } });
       if (user) {
         request.user = user;
         return;
@@ -112,7 +109,7 @@ async function buildServer() {
   server.register(FastifySSEPlugin);
 
   // Register CORS handling.
-  server.register(require("@fastify/cors"), (instance) => {
+  server.register(require("@fastify/cors"), instance => {
     return (req: any, callback: any) => {
       const corsOptions = {
         // This is NOT recommended for production as it enables reflection exploits
@@ -135,7 +132,7 @@ async function buildServer() {
     jobs: [
       {
         cronTime: HEALTH_CHECK_CRON_JOB_EXPRESSION,
-        onTick: async (server) => {
+        onTick: async server => {
           try {
             // @ts-ignore
             const token = server.jwt.sign({});
@@ -163,9 +160,7 @@ async function buildServer() {
   server.setErrorHandler(async (error, request, reply) => {
     console.log("Error: ", error);
     if (error.statusCode === 429) {
-      return reply
-        .code(429)
-        .send({ message: "You've reached a limit on preview generations" });
+      return reply.code(429).send({ message: "You've reached a limit on preview generations" });
     }
     Sentry.captureException(error);
     reply.status(500).send({ error: "Something went wrong" });

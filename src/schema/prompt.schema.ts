@@ -1,5 +1,6 @@
-import { Static, Type } from '@sinclair/typebox'
-import { BasePromptParams, MessagesSchema } from './generation.schema'
+import { Static, Type } from "@sinclair/typebox";
+
+import { BasePromptParams, MessagesSchema } from "./generation.schema";
 
 /**
  * Represents the structure of a prompt object.
@@ -16,18 +17,17 @@ import { BasePromptParams, MessagesSchema } from './generation.schema'
  * @property {Date} updatedAt - The date when the prompt was last updated.
  */
 export const PromptSchema = Type.Object({
-    id: Type.String({ format: 'uuid' }),
-    title: Type.String(),
-    models: Type.Array(Type.String({ format: 'uuid' })),
-    promptParams: BasePromptParams,
-    isDeleted: Type.Boolean(),
-    parentPromptId: Type.String({ format: 'uuid' }),
-    versionNumber: Type.Number(),
-    updateMessage: Type.Optional(Type.String()),
-    createdAt: Type.Date(),
-    updatedAt: Type.Date(),
-})
-
+  id: Type.String({ format: "uuid" }),
+  title: Type.String(),
+  models: Type.Array(Type.String({ format: "uuid" })),
+  promptParams: BasePromptParams,
+  isDeleted: Type.Boolean(),
+  parentPromptId: Type.String({ format: "uuid" }),
+  versionNumber: Type.Number(),
+  updateMessage: Type.Optional(Type.String()),
+  createdAt: Type.Date(),
+  updatedAt: Type.Date(),
+});
 
 /**
  * Represents the response schema for getting all prompts.
@@ -35,11 +35,11 @@ export const PromptSchema = Type.Object({
  * @property {Array<PromptSchema>} 200 - An array of prompt objects.
  */
 export const GetAllPromptsSchema = {
-    summary: 'Get All Prompts',
-    response: {
-        200: Type.Array(PromptSchema),
-    },
-}
+  summary: "Get All Prompts",
+  response: {
+    200: Type.Array(PromptSchema),
+  },
+};
 
 /**
  * Represents the request params and response schema for getting a prompt by its id.
@@ -52,17 +52,17 @@ export const GetAllPromptsSchema = {
  * @property {string} response.404.message - The error message.
  */
 export const GetPromptByIdSchema = {
-    summary: 'Get a Prompt by Id',
-    params: {
-        id: Type.String({ format: 'uuid' }),
-    },
-    response: {
-        200: Type.Array(PromptSchema),
-        404: Type.Object({
-            message: Type.String(),
-        }),
-    },
-}
+  summary: "Get a Prompt by Id",
+  params: {
+    id: Type.String({ format: "uuid" }),
+  },
+  response: {
+    200: Type.Array(PromptSchema),
+    404: Type.Object({
+      message: Type.String(),
+    }),
+  },
+};
 
 /**
  * Represents the request body and response schema for creating a prompt.
@@ -79,20 +79,20 @@ export const GetPromptByIdSchema = {
  * @property {PromptSchema} response.201 - The created prompt object.
  */
 export const CreatePromptSchema = {
-    summary: 'Create a Prompt',
-    body: Type.Object({
-        id: Type.String({ format: 'uuid' }),
-        title: Type.String(),
-        models: Type.Array(Type.String({ format: 'uuid' })),
-        promptParams: BasePromptParams,
-        parentPromptId: Type.String({ format: 'uuid' }),
-        versionNumber: Type.Number(),
-        updateMessage: Type.Optional(Type.String()),
-    }),
-    response: {
-        201: PromptSchema,
-    },
-}
+  summary: "Create a Prompt",
+  body: Type.Object({
+    id: Type.String({ format: "uuid" }),
+    title: Type.String(),
+    models: Type.Array(Type.String({ format: "uuid" })),
+    promptParams: BasePromptParams,
+    parentPromptId: Type.String({ format: "uuid" }),
+    versionNumber: Type.Number(),
+    updateMessage: Type.Optional(Type.String()),
+  }),
+  response: {
+    201: PromptSchema,
+  },
+};
 
 /**
  * Represents the request params, body, and response schema for updating a prompt.
@@ -110,22 +110,22 @@ export const CreatePromptSchema = {
  */
 
 export const UpdatePromptSchema = {
-    summary: 'Update a Prompt',
-    params: {
-        id: Type.String({ format: 'uuid' }),
-    },
-    body: Type.Object({
-        title: Type.Optional(Type.String()),
-        models: Type.Optional(Type.Array(Type.String({ format: 'uuid' }))),
-        promptParams: BasePromptParams,
+  summary: "Update a Prompt",
+  params: {
+    id: Type.String({ format: "uuid" }),
+  },
+  body: Type.Object({
+    title: Type.Optional(Type.String()),
+    models: Type.Optional(Type.Array(Type.String({ format: "uuid" }))),
+    promptParams: BasePromptParams,
+  }),
+  response: {
+    200: PromptSchema,
+    404: Type.Object({
+      message: Type.String(),
     }),
-    response: {
-        200: PromptSchema,
-        404: Type.Object({
-            message: Type.String(),
-        }),
-    },
-}
+  },
+};
 
 /**
  * Represents the request params and response schema for deleting a prompt.
@@ -138,16 +138,16 @@ export const UpdatePromptSchema = {
  */
 
 export const DeletePromptSchema = {
-    summary: 'Delete a Prompt',
-    params: {
-        id: Type.String({ format: 'uuid' }),
-    },
-    response: {
-        200: Type.Object({
-            message: Type.String(),
-        }),
-    }
-}
+  summary: "Delete a Prompt",
+  params: {
+    id: Type.String({ format: "uuid" }),
+  },
+  response: {
+    200: Type.Object({
+      message: Type.String(),
+    }),
+  },
+};
 
 /**
  * Represents the request body and response schema for optimizing a prompt.
@@ -158,18 +158,18 @@ export const DeletePromptSchema = {
  * @property {Array<MessagesSchema>} response.200 - An array of optimized messages.
  */
 export const OptimizePromptSchema = {
-    summary: 'Optimize a Prompt',
-    body: Type.Object({
-        messages: Type.Array(MessagesSchema),
-    }),
-    response: {
-        200: Type.Array(MessagesSchema)
-    }
-}
+  summary: "Optimize a Prompt",
+  body: Type.Object({
+    messages: Type.Array(MessagesSchema),
+  }),
+  response: {
+    200: Type.Array(MessagesSchema),
+  },
+};
 
 /**
  * Represents the static type for the prompt schema.
  * @type {PromptSchema}
  */
 
-export type PromptSchema = Static<typeof PromptSchema>
+export type PromptSchema = Static<typeof PromptSchema>;

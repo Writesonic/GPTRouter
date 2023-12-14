@@ -1,21 +1,24 @@
 import { DataSource } from "typeorm";
-import { Provider } from '../base';
-import { ReplicateInputParamsSchema } from '../../schema/providerSchemas/replicate.schema';
-import { validateData } from '../../utils/schemaValidator';
-import { GenerationResponseSchema } from '../../schema'
-import { ImageChatModels, SSE_EVENTS } from "../../constants";
-import generateResponse from "./generate";
-import ApiError from "../../library/customError";
-import { createEventStream } from "../../utils/createEventStream";
 
+import { ImageChatModels, SSE_EVENTS } from "../../constants";
+import ApiError from "../../library/customError";
+import { GenerationResponseSchema } from "../../schema";
+import { ReplicateInputParamsSchema } from "../../schema/providerSchemas/replicate.schema";
+import { createEventStream } from "../../utils/createEventStream";
+import { validateData } from "../../utils/schemaValidator";
+import { Provider } from "../base";
+import generateResponse from "./generate";
 
 export class ReplicateProvider extends Provider<ReplicateInputParamsSchema> {
-
   protected validateParams(params: any): ReplicateInputParamsSchema {
     return validateData<ReplicateInputParamsSchema>(ReplicateInputParamsSchema, params);
   }
 
-  protected async performGeneration(params: ReplicateInputParamsSchema, timeout: number, maxRetries: number): Promise<GenerationResponseSchema> {
+  protected async performGeneration(
+    params: ReplicateInputParamsSchema,
+    timeout: number,
+    maxRetries: number,
+  ): Promise<GenerationResponseSchema> {
     const response = await generateResponse({ params: params, stream: false, timeout, maxRetries });
     return {
       id: response?.id,
@@ -24,14 +27,18 @@ export class ReplicateProvider extends Provider<ReplicateInputParamsSchema> {
           index: 0,
           text: response,
           finish_reason: "",
-        }
+        },
       ],
       model: ImageChatModels.LLAVA,
-      meta: {}
-    }
+      meta: {},
+    };
   }
 
-  protected async *performStreamGeneration(params: ReplicateInputParamsSchema, timeout: number, maxRetries: number): AsyncGenerator<any> {
+  protected async *performStreamGeneration(
+    params: ReplicateInputParamsSchema,
+    timeout: number,
+    maxRetries: number,
+  ): AsyncGenerator<any> {
     const response = await generateResponse({ params: params, stream: true, timeout, maxRetries });
 
     if (response && response.urls && response.urls.stream) {
@@ -43,20 +50,18 @@ export class ReplicateProvider extends Provider<ReplicateInputParamsSchema> {
             data: {
               text: event?.data,
               model: ImageChatModels.LLAVA,
-            }
-          }
-        }
-        else if (event?.type === "error") {
+            },
+          };
+        } else if (event?.type === "error") {
           yield {
             id: event?.lastEventId,
             event: SSE_EVENTS.ERROR,
             message: event?.data,
-          }
+          };
         }
       }
-    }
-    else {
-      throw new ApiError(500, "No stream url found")
+    } else {
+      throw new ApiError(500, "No stream url found");
     }
   }
 
@@ -67,6 +72,6 @@ export class ReplicateProvider extends Provider<ReplicateInputParamsSchema> {
 
   public async healthCheck(orm: DataSource): Promise<boolean> {
     // TODO: Implement healthCheck for replicate
-    throw new Error("Method 'healthCheck()' not implemented.");;
+    throw new Error("Method 'healthCheck()' not implemented.");
   }
 }

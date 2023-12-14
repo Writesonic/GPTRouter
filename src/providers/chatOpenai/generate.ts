@@ -1,13 +1,11 @@
-import { OpenAI } from "openai";
-import {
-  ChatOpenaiInputParamsSchema,
-  ChatOpenaiRoles,
-} from "../../schema/providerSchemas/chatOpenai.schema";
 import dotenv from "dotenv";
+import { OpenAI } from "openai";
 import {
   ChatCompletionCreateParamsNonStreaming,
   ChatCompletionCreateParamsStreaming,
 } from "openai/resources/chat/completions";
+
+import { ChatOpenaiInputParamsSchema, ChatOpenaiRoles } from "../../schema/providerSchemas/chatOpenai.schema";
 
 dotenv.config();
 
@@ -35,13 +33,10 @@ export default async function generateResponse({
   if (isAzure) {
     openai = new OpenAI({
       apiKey: process.env.AZURE_AOAI_OPENAI_SUBSCRIPTION_KEY,
-      baseURL:
-        process.env.AZURE_AOAI_OPENAI_API_BASE_URL +
-        `/openai/deployments/${params?.model}`,
+      baseURL: process.env.AZURE_AOAI_OPENAI_API_BASE_URL + `/openai/deployments/${params?.model}`,
       defaultQuery: { "api-version": process.env.AZURE_OPENAI_API_VERSION },
       defaultHeaders: {
-        "ocp-apim-subscription-key":
-          process.env.AZURE_AOAI_OPENAI_SUBSCRIPTION_KEY,
+        "ocp-apim-subscription-key": process.env.AZURE_AOAI_OPENAI_SUBSCRIPTION_KEY,
       },
       timeout: timeout,
       maxRetries: maxRetries,

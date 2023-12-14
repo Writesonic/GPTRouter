@@ -69,3 +69,7 @@ dist
 
 *build/
 *.docusaurus/
+
+.eslintcache
+.vscode
+!.vscode/settings.json.example

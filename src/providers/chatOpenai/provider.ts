@@ -1,21 +1,24 @@
 import { DataSource } from "typeorm";
-import { Provider } from '../base';
-import { ChatOpenaiInputParamsSchema } from '../../schema/providerSchemas/chatOpenai.schema';
-import { validateData } from '../../utils/schemaValidator';
-import { GenerationResponseSchema } from '../../schema'
-import { SSE_EVENTS } from "../../constants";
-import generateResponse from "./generate";
-import getTokenUsage from "./tokenUsage";
-import checkOpenaiHealth from "./healthCheck";
 
+import { SSE_EVENTS } from "../../constants";
+import { GenerationResponseSchema } from "../../schema";
+import { ChatOpenaiInputParamsSchema } from "../../schema/providerSchemas/chatOpenai.schema";
+import { validateData } from "../../utils/schemaValidator";
+import { Provider } from "../base";
+import generateResponse from "./generate";
+import checkOpenaiHealth from "./healthCheck";
+import getTokenUsage from "./tokenUsage";
 
 export class ChatOpenAIProvider extends Provider<ChatOpenaiInputParamsSchema> {
-
   protected validateParams(params: any): ChatOpenaiInputParamsSchema {
     return validateData<ChatOpenaiInputParamsSchema>(ChatOpenaiInputParamsSchema, params);
   }
 
-  protected async performGeneration(params: ChatOpenaiInputParamsSchema, timeout: number, maxRetries: number): Promise<GenerationResponseSchema> {
+  protected async performGeneration(
+    params: ChatOpenaiInputParamsSchema,
+    timeout: number,
+    maxRetries: number,
+  ): Promise<GenerationResponseSchema> {
     const response = await generateResponse({ params: params, stream: false, isAzure: false, timeout, maxRetries });
     return {
       id: response?.id,
@@ -26,19 +29,22 @@ export class ChatOpenAIProvider extends Provider<ChatOpenaiInputParamsSchema> {
           finish_reason: choice?.finish_reason,
           role: choice?.message?.role,
           function_call: choice?.message?.function_call,
-        }
-      }
-      ),
+        };
+      }),
       model: response?.model,
       meta: {
         usage: response?.usage,
-      }
-    }
+      },
+    };
   }
 
-  protected async *performStreamGeneration(params: ChatOpenaiInputParamsSchema, timeout: number, maxRetries: number): AsyncGenerator<any> {
+  protected async *performStreamGeneration(
+    params: ChatOpenaiInputParamsSchema,
+    timeout: number,
+    maxRetries: number,
+  ): AsyncGenerator<any> {
     const response = await generateResponse({ params: params, stream: true, isAzure: false, timeout, maxRetries });
-    let texts = ""
+    let texts = "";
     for await (const message of response) {
       const text = message?.choices?.[0]?.delta?.content || "";
       const finishReason = message?.choices?.[0]?.finish_reason;
@@ -51,7 +57,7 @@ export class ChatOpenAIProvider extends Provider<ChatOpenaiInputParamsSchema> {
           text: text,
           finish_reason: finishReason,
           tool_calls: tool_calls,
-        }
+        },
       };
     }
     yield {
@@ -59,9 +65,9 @@ export class ChatOpenAIProvider extends Provider<ChatOpenaiInputParamsSchema> {
       data: {
         text: texts,
         model: params.model,
-        usage: await this.tokenUsage(params, texts)
-      }
-    }
+        usage: await this.tokenUsage(params, texts),
+      },
+    };
   }
 
   public async tokenUsage(params: ChatOpenaiInputParamsSchema, completionText: string): Promise<any> {

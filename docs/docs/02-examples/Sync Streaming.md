@@ -1,6 +1,5 @@
 # Sync Streaming
 
-
 ```python
 
 import os

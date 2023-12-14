@@ -1,6 +1,5 @@
 # Sync Non Streaming
 
-
 ```python
 
 
