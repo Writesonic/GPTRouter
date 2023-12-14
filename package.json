@@ -43,6 +43,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "start": "nodemon dist/index.js"
   }
 }
