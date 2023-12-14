@@ -35,8 +35,8 @@ from gpt_router.client import GPTRouterClient
 from gpt_router.models import ModelGenerationRequest, GenerationParams
 from gpt_router.enums import ModelsEnum, ProvidersEnum
 
-
-client = GPTRouter(base_url='your_base_url', api_key='your_api_key')
+# Do not have a trailing / in base_url
+client = GPTRouterClient(base_url='your_base_url', api_key='your_api_key')
 
 messages = [
     {"role": "user", "content": "Write me a short poem"},
@@ -53,7 +53,7 @@ response = client.generate(ordered_generation_requests=[claude2_request])
 print(response.choices[0].text)
 ```
 **
-To explore more about Streaming and other examples you can have a look** [here](/docs/examples/)
+To explore more about Streaming and other examples you can have a look** [here](https://gpt-router.writesonic.com/docs/examples)
 
 ---
 

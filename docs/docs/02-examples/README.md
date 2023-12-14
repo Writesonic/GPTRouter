@@ -62,3 +62,50 @@ python async_non_streaming.py
 ```
 
 Please note that the output will vary based on the input provided and the model and parameters specified in each example.
+
+
+
+**Managing the Fallback Order**
+
+we can pass the order of Priority for model in case of failure using  ``` ordered_generation_requests=[generation_request] ``` 
+since ordered_generation_requests takes a list input of models and providers that are accessed based on healthChecks and latency 
+
+to add multiple models you can do something like 
+
+
+```python
+
+from gpt_router.models import ModelGenerationRequest
+from gpt_router.enums import ModelsEnum, ProvidersEnum
+
+generation_request_1 = ModelGenerationRequest(
+    model_name=ModelsEnum.CLAUDE_INSTANT_12.value,
+    provider_name=ProvidersEnum.ANTHROPIC.value,
+    order=2,
+    prompt_params=prompt_params
+)
+
+generation_request_2 = ModelGenerationRequest(
+        model_name=ModelsEnum.OPENAI_GPT_35_TURBO_1106.value,
+        provider_name=ProvidersEnum.CHAT_OPENAI.value,
+        order=1,
+        prompt_params=prompt_params
+    )
+ordered_generation_requests=[generation_request_1,generation_request_2]
+
+```
+
+
+**Managing Health Check Behaviour**
+
+To customise the behaviour of the Model Router based on your needs, head over to [constants.ts](https://github.com/Writesonic/GPTRouter/blob/main/src/constants.ts) file and you can change the following variables 
+
+```ts
+// Interval for checking Health of models ,default to 5 minutes 
+export const HEALTH_CHECK_CRON_JOB_EXPRESSION = "*/5 * * * *";
+
+// To bypass an model if it has more latency and move to next model in priority list 
+export const MODEL_LATENCY_LIMIT_FOR_GENERATION = 4000;
+
+
+```
