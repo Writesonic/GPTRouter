@@ -123,7 +123,7 @@ Detailed installation instructions and setup guidance can be found in our [Getti
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! If you're interested in improving GPTRouter, see our [Contribution Guidelines](./03-Contributing.md).
+We welcome contributions from the community! If you're interested in improving GPTRouter, see our [Contribution Guidelines](./contributing.md).
 
 
 ## 🔗 Links
