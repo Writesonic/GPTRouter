@@ -7,8 +7,11 @@ dotenv.config();
 export default async function generateResponse({
   params,
   stream = false,
+  // TODO: Add timeout and maxRetries
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   timeout,
   maxRetries,
+  /* eslint-enable @typescript-eslint/no-unused-vars */
 }: {
   params: ReplicateInputParamsSchema;
   stream?: boolean;

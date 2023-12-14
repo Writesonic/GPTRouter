@@ -2,7 +2,6 @@ import { DataSource } from "typeorm";
 
 import { DEFAULT_MAX_RETRIES, DEFAULT_TIMEOUT_IN_MS, Providers } from "../../constants";
 import { Model } from "../../models/Model";
-import { ModelHealthCheck } from "../../models/ModelHealthCheck";
 import { Provider } from "../../models/Provider";
 import updateHealthCheck from "../../utils/updateHealthCheck";
 import generateResponse from "./generate";
@@ -33,9 +32,10 @@ export default async function checkOpenaiHealth(orm: DataSource) {
       prompt: prompt,
     };
 
-    const obj = await orm
-      .getRepository(ModelHealthCheck)
-      .findOne({ where: { modelId: model.id, providerId: openaiProvider.id } });
+    // TODO: @typescript-eslint/no-unused-vars
+    // const obj = await orm
+    //   .getRepository(ModelHealthCheck)
+    //   .findOne({ where: { modelId: model.id, providerId: openaiProvider.id } });
 
     try {
       const startTime = Date.now();

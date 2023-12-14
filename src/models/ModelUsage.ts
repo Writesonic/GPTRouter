@@ -2,7 +2,6 @@ import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, Pr
 
 import { Model } from "./Model";
 import { Provider } from "./Provider";
-import { User } from "./User";
 
 /**
  * Entity representing the usage of a specific model by a provider for a user.

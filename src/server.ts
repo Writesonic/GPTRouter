@@ -72,6 +72,7 @@ async function buildServer() {
   //   reply.status(500).send({ error: error.message || "Something went wrong" });
   // });
   // Register JWT support for authentication.
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   server.register(require("@fastify/jwt"), {
     secret: process.env.JWT_SECRET,
     sign: {
@@ -109,7 +110,8 @@ async function buildServer() {
   server.register(FastifySSEPlugin);
 
   // Register CORS handling.
-  server.register(require("@fastify/cors"), instance => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  server.register(require("@fastify/cors"), () => {
     return (req: any, callback: any) => {
       const corsOptions = {
         // This is NOT recommended for production as it enables reflection exploits
@@ -134,9 +136,10 @@ async function buildServer() {
         cronTime: HEALTH_CHECK_CRON_JOB_EXPRESSION,
         onTick: async server => {
           try {
-            // @ts-ignore
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             const token = server.jwt.sign({});
-            const response = await server.inject({
+            await server.inject({
               url: "api/v1/healthcheck",
               method: "POST",
               headers: { Authorization: `Bearer ${token}` },
@@ -189,6 +192,7 @@ async function buildServer() {
   await server.ready();
 
   // Serve Swagger-generated API documentation.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   server.swagger();
 

@@ -1,11 +1,6 @@
 import * as Sentry from "@sentry/node";
 import { APIConnectionTimeoutError } from "openai";
 import { OpenAI } from "openai";
-import { ChatCompletion, ChatCompletionChunk, Image } from "openai/resources";
-import {
-  ChatCompletionCreateParamsNonStreaming,
-  ChatCompletionCreateParamsStreaming,
-} from "openai/resources/chat/completions";
 
 import {
   DEFAULT_MAX_RETRIES,
@@ -122,6 +117,7 @@ export const generateResponse = async (
                           (model?.cost?.input * (usage?.prompt_tokens ?? 0) +
                             model?.cost?.output * (usage?.completion_tokens ?? 0)) /
                           model?.cost?.factor,
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                         // @ts-ignore
                         userId: request.user?.id ?? params?.promptParams?.user,
                       })
@@ -171,6 +167,7 @@ export const generateResponse = async (
                 (model?.cost?.input * (usage?.prompt_tokens ?? 0) +
                   model?.cost?.output * (usage?.completion_tokens ?? 0)) /
                 model?.cost?.factor,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               userId: request.user?.id ?? params?.promptParams?.user,
             })
@@ -394,7 +391,7 @@ const generateImagesWithDALL_E = async (
           n: 1,
           size: size,
         })
-        .catch(e => {
+        .catch(() => {
           throw new ApiError(500, "Something went wrong with the AI please try again later");
         });
     });

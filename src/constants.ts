@@ -261,6 +261,7 @@ export enum ImageVendor {
   DALL_E = "dall-e",
   STABLE_DIFFUSION = "stable-diffusion",
 }
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export enum ERROR_MESSAGES {
   INCORRECT_PASSWORD = "Incorrect Password",
   USER_NOT_FOUND = "User not found",
@@ -274,6 +275,7 @@ export enum ERROR_MESSAGES {
 /**
  * Enum representing server-sent events.
  */
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export enum SSE_EVENTS {
   UPDATE = "update",
   META = "meta",

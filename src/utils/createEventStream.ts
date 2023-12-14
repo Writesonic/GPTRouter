@@ -28,7 +28,7 @@ export function createEventStream(url: string): AsyncIterable<any> {
         });
       });
 
-      source.addEventListener("done", e => {
+      source.addEventListener("done", () => {
         source.close();
         push(undefined); // Signal the iterator to finish
       });

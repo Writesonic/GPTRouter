@@ -49,6 +49,7 @@ export const getHealthCheckData = async (
   reply: FastifyReplyTypebox<typeof GetHealthCheckDataSchema>,
 ) => {
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { startDate, endDate } = request.query;
     const endDatePlus1 = new Date(endDate);

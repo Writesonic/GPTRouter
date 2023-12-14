@@ -1,10 +1,9 @@
 /**
  * Represents a User entity in the database.
  */
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 import { UserRole } from "../constants";
-import { ModelUsage } from "./ModelUsage";
 
 @Entity()
 export class User extends BaseEntity {

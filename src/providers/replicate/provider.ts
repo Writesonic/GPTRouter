@@ -1,5 +1,3 @@
-import { DataSource } from "typeorm";
-
 import { ImageChatModels, SSE_EVENTS } from "../../constants";
 import ApiError from "../../library/customError";
 import { GenerationResponseSchema } from "../../schema";
@@ -65,12 +63,12 @@ export class ReplicateProvider extends Provider<ReplicateInputParamsSchema> {
     }
   }
 
-  public async tokenUsage(params: ReplicateInputParamsSchema, completionText: string): Promise<any> {
+  public async tokenUsage(): Promise<any> {
     // TODO: Implement tokenUsage for replicate
     throw new Error("Method 'tokenUsage()' not implemented.");
   }
 
-  public async healthCheck(orm: DataSource): Promise<boolean> {
+  public async healthCheck(): Promise<boolean> {
     // TODO: Implement healthCheck for replicate
     throw new Error("Method 'healthCheck()' not implemented.");
   }

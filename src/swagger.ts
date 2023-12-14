@@ -6,6 +6,7 @@ import { FastifyInstance } from "fastify";
  * @returns {Promise<void>} - A Promise that resolves once Swagger is successfully initialized
  */
 export default async function initSwagger(server: FastifyInstance) {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   await server.register(require("@fastify/swagger"), {
     openapi: {
       info: {
@@ -29,6 +30,7 @@ export default async function initSwagger(server: FastifyInstance) {
       },
     },
   });
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   await server.register(require("@fastify/swagger-ui"), {
     routePrefix: "/docs",
   });

@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/node";
-import { encodingForModel, getEncoding } from "js-tiktoken";
+import { encodingForModel } from "js-tiktoken";
 
 /**
  * getTokenUsage calculates the token usage for a given set of messages, a completion string and a model.
@@ -11,6 +11,7 @@ import { encodingForModel, getEncoding } from "js-tiktoken";
  */
 export default async function getTokenUsage(messages: any, completion: string, model: string) {
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const enc = encodingForModel(model);
     let promptTokens = 0;

@@ -14,7 +14,9 @@ export default async function initModels(orm: DataSource) {
 
   const existingModels = await orm.createQueryBuilder().select("model").from(Model, "model").getMany();
 
-  let filterdModels = models.filter(model => !existingModels.find(existingModel => existingModel.name === model.name));
+  const filterdModels = models.filter(
+    model => !existingModels.find(existingModel => existingModel.name === model.name),
+  );
 
   await orm
     .createQueryBuilder()
