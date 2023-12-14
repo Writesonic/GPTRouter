@@ -1,61 +1,9 @@
 # 🚀 GPTRouter 
 
-**GPTRouter: Your AI Model Gateway - Smoothly Manage Multiple LLMs and Image Models, Speed Up Responses, and Ensure Non-Stop Reliability.**
+**Your AI Model Gateway - Smoothly Manage Multiple LLMs and Image Models, Speed Up Responses, and Ensure Non-Stop Reliability.**
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/writesonic?style=social)](https://twitter.com/writesonic)
 
-
-## Quick Start
-
-Ready to get started? Here's how:
-
----
-### Prerequisites
-
-1. **Getting The Server Running** 
-   - You would need to have the GPTRouter server running, to run it locally you can have a look [here](https://gpt-router.writesonic.com/docs/deployment/Developing%20Locally) 
-   - or you can use our **Preview Deployment** with baseURL ```https://gpt-router-preview.writesonic.com/``` and to get an API key please fill the form [here](https://gpt-router.writesonic.com/#APIKey) and get the preview key delivered to you over the email 
-
----
-You can try out the GPTRouter using our PythonSDK or via the API  [Docs](https://gpt-router-preview.writesonic.com/docs/static/index.html) meanwhile we are working on JS and other Clients and are looking for contributors
-
-### Using the Python SDK
-```bash
-pip install gptrouter
-```
-
-Or with conda:
-
-```bash
-conda install gptrouter -c conda-forge
-```
-**Usage**
-```python
-from gpt_router.client import GPTRouterClient
-from gpt_router.models import ModelGenerationRequest, GenerationParams
-from gpt_router.enums import ModelsEnum, ProvidersEnum
-
-
-client = GPTRouter(base_url='your_base_url', api_key='your_api_key')
-
-messages = [
-    {"role": "user", "content": "Write me a short poem"},
-]
-prompt_params = GenerationParams(messages=messages)
-claude2_request = ModelGenerationRequest(
-    model_name=ModelsEnum.CLAUDE_INSTANT_12,
-    provider_name=ProvidersEnum.ANTHROPIC.value,
-    order=1,
-    prompt_params=prompt_params,
-)
-
-response = client.generate(ordered_generation_requests=[claude2_request])
-print(response.choices[0].text)
-```
-**
-To explore more about Streaming and other examples you can have a look** [here](/docs/examples/)
-
----
 
 ## 🌐 Why GPTRouter?
 
@@ -85,17 +33,78 @@ At Writesonic, after three years of navigating the world of large language model
 | Anthropic        | :white_check_mark: |    :white_check_mark:    | :white_check_mark: |    :white_check_mark:    |
 | Replicate        | :white_check_mark: |    :white_check_mark:    | :white_check_mark: |    :white_check_mark:    |
 | Stable Diffusion | :white_check_mark: | :heavy_exclamation_mark: | :white_check_mark: | :heavy_exclamation_mark: |
-| Dalle            | :white_check_mark: | :heavy_exclamation_mark: | :white_check_mark: | :heavy_exclamation_mark: |
+| Dalle-3          | :white_check_mark: | :heavy_exclamation_mark: | :white_check_mark: | :heavy_exclamation_mark: |
 | Cohere           | :white_check_mark: |    :white_check_mark:    | :white_check_mark: |    :white_check_mark:    |
 | More to come     |     :clock930:     |        :clock930:        |     :clock930:     |        :clock930:        |
 
 
 :heavy_exclamation_mark: Streaming not applicable to Image Models
 
-:clock930: Coming Sooon
+:clock930: Coming Soon
 
 
-**:sparkles: Contributors Welcome! :sparkles:**
+
+:sparkles: **Contributors Welcome!** :sparkles:
+
+
+## Quick Start
+
+Ready to get started? Here's how:
+
+---
+### Prerequisites
+
+**Getting The Server Running**
+   - To run the GPTRouter server locally, follow the steps [here](https://gpt-router.writesonic.com/docs/deployment/Developing%20Locally) 
+   - Alternatively, use our **Preview Deployment** with the baseURL ```https://gpt-router-preview.writesonic.com/```. Get your API key by filling out the form [here](https://gpt-router.writesonic.com/#APIKey).
+
+---
+
+Once the Server is running, you can integrate GPTRouter into your application using our Python SDK or via the API [Docs](https://gpt-router-preview.writesonic.com/docs/static/index.html).
+Meanwhile, we are working on JS and other clients and are looking for contributors to help out.
+
+### Using the Python SDK
+
+Install GPTRouter using pip:
+```bash
+pip install gptrouter
+```
+
+Or with conda:
+```bash
+conda install gptrouter -c conda-forge
+```
+
+
+**Usage Example**
+```python
+from gpt_router.client import GPTRouterClient
+from gpt_router.models import ModelGenerationRequest, GenerationParams
+from gpt_router.enums import ModelsEnum, ProvidersEnum
+
+
+client = GPTRouter(base_url='your_base_url', api_key='your_api_key')
+
+messages = [
+    {"role": "user", "content": "Write me a short poem"},
+]
+prompt_params = GenerationParams(messages=messages)
+claude2_request = ModelGenerationRequest(
+    model_name=ModelsEnum.CLAUDE_INSTANT_12,
+    provider_name=ProvidersEnum.ANTHROPIC.value,
+    order=1,
+    prompt_params=prompt_params,
+)
+
+response = client.generate(ordered_generation_requests=[claude2_request])
+print(response.choices[0].text)
+```
+
+**Discover More:**
+Explore streaming and other examples [here](/docs/examples/).
+
+---
+
 
 ### On the Horizon:
 
