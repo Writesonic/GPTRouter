@@ -1,0 +1,38 @@
+{
+    "editor.wordWrap": "on",
+    "files.associations": {
+        "*.js": "javascriptreact",
+        "*.ts": "typescript",
+        "*.tsx": "typescriptreact",
+        "*.sass": "sass",
+        "*.scss": "scss"
+    },
+    "[javascript]": {
+        "editor.formatOnSave": true,
+    },
+    "[java]": {
+        "editor.formatOnSave": true,
+    },
+    "[javascriptreact]": {
+        "editor.formatOnSave": true,
+    },
+    "[typescriptreact]": {
+        "editor.formatOnSave": true,
+    },
+    "[typescript]": {
+        "editor.formatOnSave": true,
+    },
+    "eslint.alwaysShowStatus": true,
+    "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "html.format.enable": false,
+    "scss.lint.float": "warning",
+    "scss.lint.duplicateProperties": "warning",
+    "css.lint.duplicateProperties": "warning",
+    "scss.lint.universalSelector": "warning",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.accessibilitySupport": "off",
+}

@@ -1,0 +1,48 @@
+{
+  "name": "model-router",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.10.0",
+    "@anthropic-ai/tokenizer": "^0.0.4",
+    "@fastify/cors": "^8.3.0",
+    "@fastify/jwt": "^7.2.0",
+    "@fastify/rate-limit": "^9.0.1",
+    "@fastify/swagger": "^8.6.0",
+    "@fastify/swagger-ui": "^1.9.0",
+    "@fastify/type-provider-typebox": "^3.2.0",
+    "@sentry/node": "^7.63.0",
+    "@sinclair/typebox": "^0.28.20",
+    "cohere-ai": "^7.4.0",
+    "docusaurus-plugin-typedoc": "^0.21.0",
+    "dotenv": "^16.3.1",
+    "eventsource": "^2.0.2",
+    "fastify": "^4.18.0",
+    "fastify-cron": "^1.3.1",
+    "fastify-sse-v2": "^3.1.0",
+    "gpt-3-encoder": "^1.1.4",
+    "js-tiktoken": "^1.0.7",
+    "openai": "^4.17.0",
+    "pg": "^8.11.1",
+    "replicate": "^0.22.0",
+    "ts-node": "^10.9.1",
+    "typedoc-plugin-markdown": "^3.17.1",
+    "typeorm": "^0.3.17",
+    "typeorm-fastify-plugin": "^1.0.5",
+    "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "@types/cron": "^2.4.0",
+    "@types/eventsource": "^1.1.15",
+    "@types/node": "^20.3.1",
+    "nodemon": "^2.0.22",
+    "pino-pretty": "^10.0.0",
+    "typedoc": "^0.25.4",
+    "typescript": "^5.1.5"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+  }
+}
