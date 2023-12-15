@@ -1,5 +1,7 @@
 # 🚀 GPTRouter
 
+<img src="https://writesonic.s3.amazonaws.com/gpt-router/gpt-router-hero.png" height="500px" width="500px" />
+
 **Your AI Model Gateway - Smoothly Manage Multiple LLMs and Image Models, Speed Up Responses, and Ensure Non-Stop Reliability.**
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/writesonic?style=social)](https://twitter.com/writesonic)
@@ -24,6 +26,8 @@ At Writesonic, after three years of navigating the world of large language model
 - **⏱️ Fast and Responsive**: Designed to reduce latency, GPTRouter ensures your interactions with AI models are quick and efficient.
 
 ### Supported Models:
+
+<img src="https://writesonic.s3.amazonaws.com/gpt-router/gpt-router.png" height="500px" width="800px" />
 
 | Supported Models |     Completion     |        Streaming         |  Async Completion  |     Async Streaming      |
 | ---------------- | :----------------: | :----------------------: | :----------------: | :----------------------: |
@@ -51,8 +55,9 @@ Ready to get started? Here's how:
 ### Prerequisites
 
 **Getting The Server Running**
-   - To run the GPTRouter server locally, follow the steps [here](https://gpt-router.writesonic.com/docs/Getting%20Started/Developing%20Locally) 
-   - Alternatively, use our **Preview Deployment** with the baseURL ```https://gpt-router-preview.writesonic.com/```. Get your API key by filling out the form [here](https://gpt-router.writesonic.com/#APIKey).
+
+- To run the GPTRouter server locally, follow the steps [here](https://gpt-router.writesonic.com/docs/Getting%20Started/Developing%20Locally)
+- Alternatively, use our **Preview Deployment** with the baseURL `https://gpt-router-preview.writesonic.com/`. Get your API key by filling out the form [here](https://gpt-router.writesonic.com/#APIKey).
 
 ---
 

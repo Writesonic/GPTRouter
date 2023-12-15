@@ -83,6 +83,8 @@ At Writesonic, after three years of navigating the world of large language model
 
 ### Supported Models:
 
+<img src="https://writesonic.s3.amazonaws.com/gpt-router/gpt-router.png" height="500px" width="800px" />
+
 | Supported Models |     Completion     |        Streaming         |  Async Completion  |     Async Streaming      |
 | ---------------- | :----------------: | :----------------------: | :----------------: | :----------------------: |
 | OpenAI           | :white_check_mark: |    :white_check_mark:    | :white_check_mark: |    :white_check_mark:    |
