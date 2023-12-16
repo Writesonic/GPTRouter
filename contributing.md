@@ -91,13 +91,13 @@ To maintain a consistent codebase, GPTRouter follows certain code style and codi
 
 If you have implemented a new feature, fixed a bug, or made any improvements, we welcome your pull requests. Before submitting a pull request, please make sure to do the following:
 
-1. Branch out from the latest `master`.
+1. Branch out from the latest `main`.
 
 2. Commit your changes with meaningful commit messages.
 
 3. Push your changes to your forked repository.
 
-4. Submit your pull request to the `master` branch of the main repository.
+4. Submit your pull request to the `main` branch of the main repository.
 
 We will review your changes and get back to you with feedback or merge it if everything looks good.
 
